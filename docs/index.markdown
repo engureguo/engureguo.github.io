@@ -6,7 +6,4 @@ layout: home
 ---
 
 
-# Content
-
----
 

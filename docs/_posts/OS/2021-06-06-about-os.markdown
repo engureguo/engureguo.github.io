@@ -1,0 +1,9 @@
+---
+layout: post
+title:  "About OS"
+categories: os
+---
+
+
+
+OS : Operation System.
