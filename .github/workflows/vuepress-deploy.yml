@@ -16,20 +16,15 @@ jobs:
       with:
         node-version: '18.x'
 
-    - name: Configure Git
-      uses: actions/setup-git@v2
-      with:
-        git_user_name: engureguo
-        git_user_email: 57861661+engureguo@users.noreply.github.com
-
     - name: Build Front-end files
       run: |
+        apt install git
         yarn
         export NODE_OPTIONS=--openssl-legacy-provider
         yarn docs:build
         cd docs/.vuepress/dist
         git init
-        git config --local user.email "${{ env.GIT_EMAIL }}"
-        git config --local user.name "${{ env.GIT_NAME }}"
+        git config --local user.email "engureguo"
+        git config --local user.name "57861661+engureguo@users.noreply.github.com"
         git commit -a -m "Add changes"
         git push -f https://${{ secrets.ACCESS_TOKEN }}@github.com/engureguo/engureguo.github.io.git gh-pages
