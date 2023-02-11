@@ -26,5 +26,6 @@ jobs:
         git init
         git config --local user.email "engureguo"
         git config --local user.name "57861661+engureguo@users.noreply.github.com"
-        git commit -a -m "Add changes"
+        git add .
+        git commit -m "Add changes"
         git push -f https://${{ secrets.ACCESS_TOKEN }}@github.com/engureguo/engureguo.github.io.git gh-pages
