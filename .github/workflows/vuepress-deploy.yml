@@ -18,7 +18,6 @@ jobs:
 
     - name: Build Front-end files
       run: |
-        apt install git
         yarn
         export NODE_OPTIONS=--openssl-legacy-provider
         yarn docs:build
