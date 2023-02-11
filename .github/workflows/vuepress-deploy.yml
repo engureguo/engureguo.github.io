@@ -18,14 +18,13 @@ jobs:
 
     - name: Build Front-end files
       run: |
+        set -e
         yarn
         export NODE_OPTIONS=--openssl-legacy-provider
         yarn docs:build
-        cd docs/.vuepress/dist
-        git config --global init.defaultBranch main
-        git init
-        git config --local user.email "engureguo"
-        git config --local user.name "57861661+engureguo@users.noreply.github.com"
-        git add .
-        git commit -m "Add changes"
-        git push -f https://${{ secrets.ACCESS_TOKEN }}@github.com/engureguo/engureguo.github.io.git gh-pages
+
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        deploy_key: ${{ secrets.ACCESS_TOKEN }}
+        publish_dir: ./docs/.vuepress/dist
