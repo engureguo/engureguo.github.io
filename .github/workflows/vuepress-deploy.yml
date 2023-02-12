@@ -8,6 +8,7 @@ on:
 env:
   username: engureguo
   useremail: 57861661+engureguo@users.noreply.github.com
+  GITHUB_REPOSITORY: engureguo.github.io
 
 jobs:
   build:
@@ -36,7 +37,6 @@ jobs:
         git config --global init.defaultBranch main
         git config --global user.name "${{ env.username }}"
         git config --global user.email "${{ env.useremail }}"
-        git remote set-url origin https://x-access-token:${{ secrets.ASSESSTOKEN }}@github.com/$GITHUB_REPOSITORY
 
     - run: echo 'push gh-pages'
 
@@ -44,7 +44,8 @@ jobs:
       run: |
         cd docs/.vuepress/dist
         git init
+        git remote set-url origin https://x-access-token:${{ secrets.ASSESSTOKEN }}@github.com/$GITHUB_REPOSITORY
         git add .
         git commit -m "Auto generated"
-        git push -u main gh-pages
-        # git push -f main:gh-pages
+        git push -u origin main:gh-pages --force
+        
