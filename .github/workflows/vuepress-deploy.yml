@@ -41,6 +41,7 @@ jobs:
         git config --global user.email "${{ env.useremail }}"
         mkdir ~/.ssh
         echo $SSHKEY >> ~/.ssh/id_rsa
+        mv .github/workflows/config ~/.ssh/
 
     - run: echo 'push gh-pages'
 
