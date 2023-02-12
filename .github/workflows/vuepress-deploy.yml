@@ -35,7 +35,7 @@ jobs:
         git config --local user.email "${{ env.useremail }}"
         git config --local user.name "${{ env.username }}"
         git config --global init.defaultBranch main
-        echo $ssh_private_key > ~/.ssh/id_rsa
+        mkdir ~/.ssh && echo $ssh_private_key > ~/.ssh/id_rsa
         git -T git@github.com
 
     - run: echo 'push gh-pages'
