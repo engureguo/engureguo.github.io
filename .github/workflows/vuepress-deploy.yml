@@ -8,7 +8,6 @@ on:
 env:
   username: engureguo
   useremail: 57861661+engureguo@users.noreply.github.com
-  ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
 
 jobs:
   build:
@@ -37,7 +36,7 @@ jobs:
         git config --global init.defaultBranch main
         git config --global user.name "${{ env.username }}"
         git config --global user.email "${{ env.useremail }}"
-        git remote set-url origin https://x-access-token:${{ secrets.ACCESS_TOKEN }}@github.com/$GITHUB_REPOSITORY
+        git remote set-url origin https://x-access-token:${{ secrets.ASSESSTOKEN }}@github.com/$GITHUB_REPOSITORY
 
     - run: echo 'push gh-pages'
 
@@ -47,4 +46,5 @@ jobs:
         git init
         git add .
         git commit -m "Auto generated"
-        git push -f main:gh-pages
+        git push -u main gh-pages
+        # git push -f main:gh-pages
