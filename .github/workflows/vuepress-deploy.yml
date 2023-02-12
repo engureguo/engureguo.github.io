@@ -5,10 +5,16 @@ on:
     branches:
     - main
 
+env:
+  username: engureguo
+  useremail: 57861661+engureguo@users.noreply.github.com
+  ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+    - run: echo "start!"
     - uses: actions/checkout@v3
 
     - name: Use Node.js
@@ -16,15 +22,26 @@ jobs:
       with:
         node-version: '18.x'
 
+    - run: echo 'yarn & yarn docs:build'
     - name: Build Front-end files
       run: |
         set -e
         yarn
         export NODE_OPTIONS=--openssl-legacy-provider
         yarn docs:build
+    
+    - name: Set up git env
+      run: |
+        git config --local user.email "${{ env.useremail }}"
+        git config --local user.name "${{ env.username }}"
+        git config --global init.defaultBranch main
+        echo $ssh_private_key > ~/.ssh/id_rsa
+        git -T git@github.com
 
-    - name: Deploy
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        deploy_key: ${{ secrets.ACCESS_TOKEN }}
-        publish_dir: ./docs/.vuepress/dist
+    - run: echo 'push gh-pages'
+    - name: Push dist to gh-pages branch
+        cd docs/.vuepress/dist
+        git init
+        git add .
+        git commit -m "Add changes"
+        git push -f main:gh-pages
