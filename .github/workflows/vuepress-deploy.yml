@@ -39,11 +39,11 @@ jobs:
         git config --global user.email "${{ env.useremail }}"
         mkdir ~/.ssh && echo ${{ secrets.SSH_PRIVATE_KEY }} > ~/.ssh/id_rsa
         apt install tee
-        tee ~/.ssh/config << "EOF"
-        Host github.com
-        HostName github.com
-        PreferredAuthentications publickey
-        IdentityFile ~/.ssh/id_rsa
+        tee ~/.ssh/config << "EOF" \
+        Host github.com \
+        HostName github.com \
+        PreferredAuthentications publickey \
+        IdentityFile ~/.ssh/id_rsa \
         EOF
 
     - run: echo 'push gh-pages'
