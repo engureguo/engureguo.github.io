@@ -15,6 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: echo "start!"
+
     - uses: actions/checkout@v3
 
     - name: Use Node.js
@@ -23,6 +24,7 @@ jobs:
         node-version: '18.x'
 
     - run: echo 'yarn & yarn docs:build'
+
     - name: Build Front-end files
       run: |
         set -e
@@ -36,9 +38,10 @@ jobs:
         git config --local user.name "${{ env.username }}"
         git config --global init.defaultBranch main
         mkdir ~/.ssh && echo $ssh_private_key > ~/.ssh/id_rsa
-        git -T git@github.com
+        ssh -T git@github.com
 
     - run: echo 'push gh-pages'
+
     - name: Push dist to gh-pages branch
       run: |
         cd docs/.vuepress/dist
