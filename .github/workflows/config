@@ -1,3 +1,4 @@
+# github
 Host github.com
 HostName github.com
 PreferredAuthentications publickey
