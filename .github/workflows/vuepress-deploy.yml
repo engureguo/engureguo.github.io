@@ -34,10 +34,10 @@ jobs:
     
     - name: Set up git env
       run: |
-        git config --local user.name "${{ env.username }}"
-        git config --local user.email "${{ env.useremail }}"
-        git remote set-url origin https://x-access-token:${{ secrets.ACCESS_TOKEN }}@github.com/$GITHUB_REPOSITORY
         git config --global init.defaultBranch main
+        git config --global user.name "${{ env.username }}"
+        git config --global user.email "${{ env.useremail }}"
+        git remote set-url origin https://x-access-token:${{ secrets.ACCESS_TOKEN }}@github.com/$GITHUB_REPOSITORY
 
     - run: echo 'push gh-pages'
 
