@@ -40,6 +40,7 @@ jobs:
 
     - run: echo 'push gh-pages'
     - name: Push dist to gh-pages branch
+      run: |
         cd docs/.vuepress/dist
         git init
         git add .
