@@ -37,7 +37,7 @@ jobs:
         git config --global init.defaultBranch main
         git config --global user.name "${{ env.username }}"
         git config --global user.email "${{ env.useremail }}"
-        mkdir ~/.ssh &&  ${{ secrets.SSH_PRIVATE_KEY }} > ~/.ssh/id_rsa
+        mkdir ~/.ssh && echo ${{ secrets.SSH_PRIVATE_KEY }} > ~/.ssh/id_rsa
         tee ~/.ssh/config << "EOF"
         Host github.com
         HostName github.com
