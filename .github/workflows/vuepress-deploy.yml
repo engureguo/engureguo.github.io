@@ -9,6 +9,7 @@ env:
   username: engureguo
   useremail: 57861661+engureguo@users.noreply.github.com
   GITHUB_REPOSITORY: engureguo.github.io
+  SSHKEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
 jobs:
   build:
@@ -38,7 +39,8 @@ jobs:
         git config --global init.defaultBranch main
         git config --global user.name "${{ env.username }}"
         git config --global user.email "${{ env.useremail }}"
-        mkdir ~/.ssh && echo ${{ secrets.SSH_PRIVATE_KEY }} >> ~/.ssh/id_rsa
+        mkdir ~/.ssh
+        echo $SSHKEY >> ~/.ssh/id_rsa
 
     - run: echo 'push gh-pages'
 
