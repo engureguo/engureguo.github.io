@@ -34,11 +34,10 @@ jobs:
     
     - name: Set up git env
       run: |
-        git config --local user.email "${{ env.useremail }}"
         git config --local user.name "${{ env.username }}"
+        git config --local user.email "${{ env.useremail }}"
+        git remote set-url origin https://x-access-token:${{ secrets.ACCESS_TOKEN }}@github.com/$GITHUB_REPOSITORY
         git config --global init.defaultBranch main
-        mkdir ~/.ssh && echo $ssh_private_key > ~/.ssh/id_rsa
-        ssh -T git@github.com
 
     - run: echo 'push gh-pages'
 
@@ -47,5 +46,5 @@ jobs:
         cd docs/.vuepress/dist
         git init
         git add .
-        git commit -m "Add changes"
+        git commit -m "Auto generated"
         git push -f main:gh-pages
