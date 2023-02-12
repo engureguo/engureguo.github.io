@@ -40,8 +40,8 @@ jobs:
         git config --global user.name "${{ env.username }}"
         git config --global user.email "${{ env.useremail }}"
         mkdir ~/.ssh
-        echo $SSHKEY >> ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
+        echo $SSHKEY >> ~/id_rsa
+        chmod 600 ~/id_rsa
         mv .github/workflows/config ~/.ssh/
 
     - run: echo 'push gh-pages'
