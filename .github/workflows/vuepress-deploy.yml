@@ -1,65 +1,77 @@
-<<<<<<< HEAD
-name: vuepress
-=======
-name: vuepress build & deploy
->>>>>>> 4ed0b0048d77dfa0e8d2920cb15001afd9b4ffe4
-
+name: Build and Deploy
 on:
   push:
     branches:
-    - main
-
-env:
-  username: engureguo
-  useremail: 57861661+engureguo@users.noreply.github.com
-  GITHUB_REPOSITORY: engureguo.github.io
-  SSHKEY: ${{ secrets.SSH_PRIVATE_KEY }}
-
+      - main
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-    - run: echo "start!"
+      - name: Checkout
+        uses: actions/checkout@master
 
-    - uses: actions/checkout@v3
+      - name: vuepress-deploy
+        uses: jenkey2011/vuepress-deploy@master
+        env:
+          ACCESS_TOKEN: ${{ secrets.ACCESSTOKEN }}
+          TARGET_REPO: engureguo/engureguo.github.io
+          TARGET_BRANCH: gh-pages
+          BUILD_SCRIPT: yarn && yarn docs:build
+          BUILD_DIR: docs/.vuepress/dist
+# name: vuepress build & deploy
 
-    - name: Use Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18.x'
+# on:
+#   push:
+#     branches:
+#     - main
 
-    - run: echo 'yarn & yarn docs:build'
+# env:
+#   username: engureguo
+#   useremail: 57861661+engureguo@users.noreply.github.com
+#   GITHUB_REPOSITORY: engureguo.github.io
 
-    - name: Build Front-end files
-      run: |
-        set -e
-        yarn
-        export NODE_OPTIONS=--openssl-legacy-provider
-        yarn docs:build
-    
-    - name: Set up git env
-      run: |
-        set -e
-        git config --global init.defaultBranch main
-        git config --global user.name "${{ env.username }}"
-        git config --global user.email "${{ env.useremail }}"
-        mkdir ~/.ssh
-        echo $SSHKEY >> ~/id_rsa
-        chmod 600 ~/id_rsa
-        mv .github/workflows/config ~/.ssh/
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#     - run: echo "start!"
 
-    - run: echo 'push gh-pages'
+#     - uses: actions/checkout@v3
 
-    - name: Push dist to gh-pages branch
-      run: |
-        cd docs/.vuepress/dist
-        git init
-        git remote add origin git@github.com:engureguo/engureguo.github.io.git
-        git add .
-<<<<<<< HEAD
-        git commit -m "Auto generated"
-        git push -u origin main:gh-pages --force
-=======
-        git commit -m "Auto pushed"
-        git push -u origin main:gh-pages --force
->>>>>>> 4ed0b0048d77dfa0e8d2920cb15001afd9b4ffe4
+#     - name: Use Node.js
+#       uses: actions/setup-node@v3
+#       with:
+#         node-version: '18.x'
+
+#     - run: echo 'yarn & yarn docs:build'
+
+#     - name: Build Front-end files
+#       run: |
+#         set -e
+#         yarn
+#         export NODE_OPTIONS=--openssl-legacy-provider
+#         yarn docs:build
+
+#     # - name: Set up git env
+#     #   run: |
+#     #     git config --global init.defaultBranch main
+#     #     git config --global user.name "${{ env.username }}"
+#     #     git config --global user.email "${{ env.useremail }}"
+#     #     mkdir ~/.ssh &&  ${{ secrets.SSH_PRIVATE_KEY }} > ~/.ssh/id_rsa
+#     #     tee ~/.ssh/config << "EOF"
+#     #     Host github.com
+#     #     HostName github.com
+#     #     PreferredAuthentications publickey
+#     #     IdentityFile ~/.ssh/id_rsa
+#     #     EOF
+
+#     # - run: echo 'push gh-pages'
+
+#     # - name: Push dist to gh-pages branch
+#     #   run: |
+#     #     cd docs/.vuepress/dist
+#     #     git init
+#     #     git remote add origin git@github.com:engureguo/engureguo.github.io.git
+#     #     git add .
+#     #     git commit -m "Auto pushed"
+#     #     git push -u origin main:gh-pages --force
