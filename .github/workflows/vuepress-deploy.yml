@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 name: vuepress
+=======
+name: vuepress build & deploy
+>>>>>>> 4ed0b0048d77dfa0e8d2920cb15001afd9b4ffe4
 
 on:
   push:
@@ -9,6 +13,7 @@ env:
   username: engureguo
   useremail: 57861661+engureguo@users.noreply.github.com
   GITHUB_REPOSITORY: engureguo.github.io
+  SSHKEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
 jobs:
   build:
@@ -34,9 +39,14 @@ jobs:
     
     - name: Set up git env
       run: |
+        set -e
         git config --global init.defaultBranch main
         git config --global user.name "${{ env.username }}"
         git config --global user.email "${{ env.useremail }}"
+        mkdir ~/.ssh
+        echo $SSHKEY >> ~/id_rsa
+        chmod 600 ~/id_rsa
+        mv .github/workflows/config ~/.ssh/
 
     - run: echo 'push gh-pages'
 
@@ -44,7 +54,12 @@ jobs:
       run: |
         cd docs/.vuepress/dist
         git init
-        git remote set-url origin https://x-access-token:${{ secrets.ASSESSTOKEN }}@github.com/$GITHUB_REPOSITORY
+        git remote add origin git@github.com:engureguo/engureguo.github.io.git
         git add .
+<<<<<<< HEAD
         git commit -m "Auto generated"
         git push -u origin main:gh-pages --force
+=======
+        git commit -m "Auto pushed"
+        git push -u origin main:gh-pages --force
+>>>>>>> 4ed0b0048d77dfa0e8d2920cb15001afd9b4ffe4
