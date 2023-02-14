@@ -1,4 +1,4 @@
-name: build & deploy pages
+name: vuepress
 
 on:
   push:
@@ -48,4 +48,3 @@ jobs:
         git add .
         git commit -m "Auto generated"
         git push -u origin main:gh-pages --force
-        
