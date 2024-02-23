@@ -1,9 +1,18 @@
+---
+home: true
+heroImage: /images/logo.png
+actionText: 让我们开始吧~
+actionLink: /nav-page/
+footer: MIT | Copyright © 2024 Egu0
+---
 
-基于 `vuepress`、`github pages`、`github actions` 的静态站点
+[本网站源码](https://gitee.com/egu0/ops)
 
+<!--
 
-![mm](./foo/images/9881.jpg)
+---
+sidebarDepth: 2
+sidebar: auto
+---
 
-链接：
-- [vuepress-v1](https://v1.vuepress.vuejs.org/zh/guide/)
-- [vuepress 默认整体配置](https://v1.vuepress.vuejs.org/zh/theme/default-theme-config.html)
+-->
