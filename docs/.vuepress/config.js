@@ -1,5 +1,5 @@
 module.exports = {
-  base: '/ops/',
+  base: '/',
   title: 'Egu0',
   description: '欢迎您，这是一个公开的个人内容网站！',
   themeConfig: {
