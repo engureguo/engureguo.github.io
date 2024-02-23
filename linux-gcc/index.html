@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>GCC 入门 | Egu0</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    
+    <meta name="description" content="欢迎您，这是一个公开的个人内容网站！">
+    
+    <link rel="preload" href="/ops/assets/css/0.styles.35aed208.css" as="style"><link rel="preload" href="/ops/assets/js/app.d9b500de.js" as="script"><link rel="preload" href="/ops/assets/js/2.592a6313.js" as="script"><link rel="preload" href="/ops/assets/js/1.47e12c88.js" as="script"><link rel="preload" href="/ops/assets/js/22.f648a94c.js" as="script"><link rel="prefetch" href="/ops/assets/js/10.fde088a2.js"><link rel="prefetch" href="/ops/assets/js/11.c62b6b34.js"><link rel="prefetch" href="/ops/assets/js/12.27d4f152.js"><link rel="prefetch" href="/ops/assets/js/13.419d7748.js"><link rel="prefetch" href="/ops/assets/js/14.eb7a3d07.js"><link rel="prefetch" href="/ops/assets/js/15.114dfd5c.js"><link rel="prefetch" href="/ops/assets/js/16.85253907.js"><link rel="prefetch" href="/ops/assets/js/17.c2838453.js"><link rel="prefetch" href="/ops/assets/js/18.3256f17f.js"><link rel="prefetch" href="/ops/assets/js/19.d8afd0ae.js"><link rel="prefetch" href="/ops/assets/js/20.0d880388.js"><link rel="prefetch" href="/ops/assets/js/21.33b300c9.js"><link rel="prefetch" href="/ops/assets/js/23.46909532.js"><link rel="prefetch" href="/ops/assets/js/24.848e5af5.js"><link rel="prefetch" href="/ops/assets/js/25.47a9c99a.js"><link rel="prefetch" href="/ops/assets/js/26.ddfe8844.js"><link rel="prefetch" href="/ops/assets/js/27.cf01e403.js"><link rel="prefetch" href="/ops/assets/js/28.7876342e.js"><link rel="prefetch" href="/ops/assets/js/3.af33e5d6.js"><link rel="prefetch" href="/ops/assets/js/4.0a92875f.js"><link rel="prefetch" href="/ops/assets/js/5.3b9be48d.js"><link rel="prefetch" href="/ops/assets/js/6.7b96ebf4.js"><link rel="prefetch" href="/ops/assets/js/7.7e58b9c4.js"><link rel="prefetch" href="/ops/assets/js/vendors~docsearch.2493936b.js">
+    <link rel="stylesheet" href="/ops/assets/css/0.styles.35aed208.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/ops/" class="home-link router-link-active"><img src="/ops/images/logo.png" alt="Egu0" class="logo"> <span class="site-name can-hide">Egu0</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="🐧 Linux" class="dropdown-title"><span class="title">🐧 Linux</span> <span class="arrow down"></span></button> <button type="button" aria-label="🐧 Linux" class="mobile-dropdown-title"><span class="title">🐧 Linux</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ops/cmake/" class="nav-link">
+  CMake 入门
+</a></li><li class="dropdown-item"><!----> <a href="/ops/linux-gcc/" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  GCC 入门
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="🔧 工具" class="dropdown-title"><span class="title">🔧 工具</span> <span class="arrow down"></span></button> <button type="button" aria-label="🔧 工具" class="mobile-dropdown-title"><span class="title">🔧 工具</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ops/tool-box/a-tool-box/" class="nav-link">
+  我的工具盒
+</a></li><li class="dropdown-item"><!----> <a href="/ops/tool-box/vuepress-using/" class="nav-link">
+  Vuepress v1 实践
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="🔗 外链" class="dropdown-title"><span class="title">🔗 外链</span> <span class="arrow down"></span></button> <button type="button" aria-label="🔗 外链" class="mobile-dropdown-title"><span class="title">🔗 外链</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://gitee.com/egu0" target="_self" class="nav-link external">
+  Gitee
+  <!----></a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="🐧 Linux" class="dropdown-title"><span class="title">🐧 Linux</span> <span class="arrow down"></span></button> <button type="button" aria-label="🐧 Linux" class="mobile-dropdown-title"><span class="title">🐧 Linux</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ops/cmake/" class="nav-link">
+  CMake 入门
+</a></li><li class="dropdown-item"><!----> <a href="/ops/linux-gcc/" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  GCC 入门
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="🔧 工具" class="dropdown-title"><span class="title">🔧 工具</span> <span class="arrow down"></span></button> <button type="button" aria-label="🔧 工具" class="mobile-dropdown-title"><span class="title">🔧 工具</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ops/tool-box/a-tool-box/" class="nav-link">
+  我的工具盒
+</a></li><li class="dropdown-item"><!----> <a href="/ops/tool-box/vuepress-using/" class="nav-link">
+  Vuepress v1 实践
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="🔗 外链" class="dropdown-title"><span class="title">🔗 外链</span> <span class="arrow down"></span></button> <button type="button" aria-label="🔗 外链" class="mobile-dropdown-title"><span class="title">🔗 外链</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://gitee.com/egu0" target="_self" class="nav-link external">
+  Gitee
+  <!----></a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>GCC 入门</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/ops/linux-gcc/#gcc" class="sidebar-link">GCC</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/ops/linux-gcc/#介绍及安装" class="sidebar-link">介绍及安装</a></li><li class="sidebar-sub-header"><a href="/ops/linux-gcc/#工作流程" class="sidebar-link">工作流程</a></li><li class="sidebar-sub-header"><a href="/ops/linux-gcc/#常用参数" class="sidebar-link">常用参数</a></li><li class="sidebar-sub-header"><a href="/ops/linux-gcc/#i-指定头文件路径" class="sidebar-link">-I 指定头文件路径</a></li><li class="sidebar-sub-header"><a href="/ops/linux-gcc/#d-指定宏" class="sidebar-link">-D 指定宏</a></li><li class="sidebar-sub-header"><a href="/ops/linux-gcc/#gcc-与-g-的区别" class="sidebar-link">gcc 与 g++ 的区别</a></li></ul></li><li><a href="/ops/linux-gcc/#静态库和动态库" class="sidebar-link">静态库和动态库</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/ops/linux-gcc/#静态库" class="sidebar-link">静态库</a></li><li class="sidebar-sub-header"><a href="/ops/linux-gcc/#动态库" class="sidebar-link">动态库</a></li><li class="sidebar-sub-header"><a href="/ops/linux-gcc/#加载原理" class="sidebar-link">加载原理</a></li><li class="sidebar-sub-header"><a href="/ops/linux-gcc/#优缺点对比" class="sidebar-link">优缺点对比</a></li><li class="sidebar-sub-header"><a href="/ops/linux-gcc/#选择标准" class="sidebar-link">选择标准</a></li></ul></li><li><a href="/ops/linux-gcc/#makefile" class="sidebar-link">makefile</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/ops/linux-gcc/#规则" class="sidebar-link">规则</a></li><li class="sidebar-sub-header"><a href="/ops/linux-gcc/#工作原理" class="sidebar-link">工作原理</a></li><li class="sidebar-sub-header"><a href="/ops/linux-gcc/#编写-makefile-开始编译" class="sidebar-link">编写 makefile 开始编译</a></li><li class="sidebar-sub-header"><a href="/ops/linux-gcc/#变量" class="sidebar-link">变量</a></li><li class="sidebar-sub-header"><a href="/ops/linux-gcc/#模式匹配" class="sidebar-link">模式匹配</a></li><li class="sidebar-sub-header"><a href="/ops/linux-gcc/#函数" class="sidebar-link">函数</a></li><li class="sidebar-sub-header"><a href="/ops/linux-gcc/#完善-makefile" class="sidebar-link">完善 makefile</a></li><li class="sidebar-sub-header"><a href="/ops/linux-gcc/#伪目标的声明" class="sidebar-link">伪目标的声明</a></li></ul></li><li><a href="/ops/linux-gcc/#gdb" class="sidebar-link">gdb</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/ops/linux-gcc/#调试准备" class="sidebar-link">调试准备</a></li><li class="sidebar-sub-header"><a href="/ops/linux-gcc/#gdb-基本使用" class="sidebar-link">gdb 基本使用</a></li><li class="sidebar-sub-header"><a href="/ops/linux-gcc/#查看代码" class="sidebar-link">查看代码</a></li><li class="sidebar-sub-header"><a href="/ops/linux-gcc/#断点操作" class="sidebar-link">断点操作</a></li><li class="sidebar-sub-header"><a href="/ops/linux-gcc/#调试命令" class="sidebar-link">调试命令</a></li><li class="sidebar-sub-header"><a href="/ops/linux-gcc/#单步调试" class="sidebar-link">单步调试</a></li><li class="sidebar-sub-header"><a href="/ops/linux-gcc/#设置变量值" class="sidebar-link">设置变量值</a></li></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="gcc-入门"><a href="#gcc-入门" class="header-anchor">#</a> GCC 入门</h1> <h2 id="gcc"><a href="#gcc" class="header-anchor">#</a> GCC</h2> <h3 id="介绍及安装"><a href="#介绍及安装" class="header-anchor">#</a> 介绍及安装</h3> <p><code>gcc</code> 是 Linux 下的编译工具集，是 <code>GNU Compiler Collection</code> 的缩写，该工具集不仅包含 <code>gcc</code>、<code>g++</code> 等编译器，还包含其它工具集比如 <code>ar</code>、<code>nm</code> 等。</p> <p>GCC 工具集不仅能编译 C/C++ 语言，其他例如 Objective-C、Pascal、Fortran、Java、Ada 等语言均能进行编译。GCC 在可以根据不同的硬件平台进行编译，既能进行<strong>交叉编译</strong>，即在 A 平台上编译 B 平台的程序，支持常见的 X86、ARM、PowerPC、mips 等，以及 Linux、Windows 等软件平台。</p> <p>安装</p> <div class="language-sh extra-class"><pre class="language-sh"><code>gcc <span class="token parameter variable">-v</span>
+g++ <span class="token parameter variable">-v</span>
+
+<span class="token function">sudo</span> apt/yum update
+<span class="token function">sudo</span> apt/yum <span class="token function">install</span> gcc g++
+</code></pre></div><h3 id="工作流程"><a href="#工作流程" class="header-anchor">#</a> 工作流程</h3> <p>GCC 编译器对程序的编译分为四个阶段：</p> <ol><li>预处理：本阶段主要内容是<strong>展开头文件</strong>、<strong>宏替换</strong>和<strong>去掉注释行</strong>。这个阶段需要使用预处理器来完成，最终得到的还是文本格式的源文件</li> <li>编译：这个阶段需要调用编译器对文件进行编译，最终得到一个汇编文件</li> <li>汇编：这个阶段需要调用汇编器对文件进行汇编，最终得到一个二进制文件</li> <li>链接：这个阶段需要调用链接器链接程序调用的库，最终得到是一个可执行的二进制文件</li></ol> <table><thead><tr><th>文件后缀</th> <th>说明</th> <th>gcc 参数</th></tr></thead> <tbody><tr><td><code>.c</code></td> <td>源文件</td> <td>无</td></tr> <tr><td><code>.i</code></td> <td>预处理后的 c 文件</td> <td><code>-E</code></td></tr> <tr><td><code>.s</code></td> <td>编译之后得到的汇编文件</td> <td><code>-S</code></td></tr> <tr><td><code>.o</code></td> <td>汇编后得到的二进制文件</td> <td><code>-c</code></td></tr></tbody></table> <p><strong>示例：分阶段展示 GCC 工作步骤</strong></p> <p>1、准备<code>main.c</code></p> <div class="language-c extra-class"><pre class="language-c"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">NUMBER</span> <span class="token expression"><span class="token number">3</span></span></span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">ifdef</span> <span class="token expression">DEBUG_MODE</span></span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;我是一个程序猿，但不会爬树...\n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span></span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> NUMBER<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;Hello, GCC!!\n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>2、预处理：<code>gcc -E main.c -o main.i</code>（<code>-o</code> 指定输出文件）</p> <p><code>main.i</code></p> <div class="language-c extra-class"><pre class="language-c"><code># <span class="token number">1</span> <span class="token string">&quot;main.c&quot;</span>
+# <span class="token number">1</span> <span class="token string">&quot;&lt;built-in&gt;&quot;</span>
+# <span class="token number">1</span> <span class="token string">&quot;&lt;command-line&gt;&quot;</span>
+# <span class="token number">31</span> <span class="token string">&quot;&lt;command-line&gt;&quot;</span>
+
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+
+# <span class="token number">2</span> <span class="token string">&quot;main.c&quot;</span> <span class="token number">2</span>
+# <span class="token number">3</span> <span class="token string">&quot;main.c&quot;</span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+
+
+
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">3</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;Hello, GCC!!\n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>3、汇编：<code>gcc -S main.i -o main.s</code></p> <p><code>main.s</code> 内容为</p> <div class="language-assembly extra-class"><pre class="language-text"><code>	.file	&quot;main.c&quot;
+	.text
+	.section	.rodata
+.LC0:
+	.string	&quot;Hello, GCC!!&quot;
+	.text
+	.globl	main
+	.type	main, @function
+main:
+.LFB0:
+	.cfi_startproc
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	subq	$16, %rsp
+	movl	$10, -8(%rbp)
+	movl	$0, -4(%rbp)
+	jmp	.L2
+.L3:
+	movl	$.LC0, %edi
+	call	puts
+	addl	$1, -4(%rbp)
+.L2:
+	cmpl	$2, -4(%rbp)
+	jle	.L3
+	movl	$0, %eax
+	leave
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE0:
+	.size	main, .-main
+	.ident	&quot;GCC: (GNU) 8.5.0 20210514 (Red Hat 8.5.0-4)&quot;
+	.section	.note.GNU-stack,&quot;&quot;,@progbits
+</code></pre></div><p>4、编译：<code>gcc -c main.s -o main.o</code></p> <p>获取的 <code>main.o</code> 为一个二进制文件</p> <p>5、链接：<code>gcc main.o -o test</code></p> <p>获取到可执行文件 <code>test</code>，执行：<code>./test</code></p> <p><strong>示例：GCC 一步编译</strong></p> <p><code>gcc main.c -o app</code>（这一步相当于链接操作，之前的三步是自动完成的）</p> <p>也可以简化为 <code>gcc main.c</code> 生成的可执行程序名为 <code>a.out</code></p> <h3 id="常用参数"><a href="#常用参数" class="header-anchor">#</a> 常用参数</h3> <table><thead><tr><th>编译选项</th> <th>描述</th></tr></thead> <tbody><tr><td><code>-E</code></td> <td>预处理源文件。比如 <code>gcc -E main.c -o main.i</code></td></tr> <tr><td><code>-S</code></td> <td>编译处理。如果指定 <code>.c</code> 文件时会自动进行预处理。<br>比如 <code>gcc -S main.i -o main.s</code></td></tr> <tr><td><code>-c</code></td> <td>汇编处理。指定<code>.c</code>或<code>.i</code>或<code>.s</code>文件时会自动进行预处理和编译<br>比如 <code>gcc -c main.s -o main.o</code></td></tr> <tr><td><code>-o</code></td> <td>指定输出文件。有两种形式：<br>1、<code>-o target source</code> 比如 <code>gcc -E -o main.i main.c</code><br>2、<code>source -o target</code> 比如 <code>gcc main.c -o app</code></td></tr> <tr><td><code>-I</code></td> <td><strong>指定</strong> include 包含文件的<strong>搜索目录</strong>，不用手动在 <code>#include</code> 语句中指定路径</td></tr> <tr><td><code>-g</code></td> <td>指定该参数，在编译时会生成调试信息，可被调试器（gdb）调试</td></tr> <tr><td><code>-D</code></td> <td>在程序编译时指定宏，比如 <code>gcc -o app main.c -DDEBUG_MODE</code></td></tr> <tr><td><code>-w</code></td> <td>不生成任何警告信息，不建议使用，因为有时候警告就是错误</td></tr> <tr><td><code>-Wall</code></td> <td>生成所有警告信息</td></tr> <tr><td><code>-On</code></td> <td>指定编译器优化的级别，<code>n</code> 的取值为 <code>0-3，</code>表示四个级别，<br>0 表示无优化，1 为默认值，3 优化级别最高</td></tr> <tr><td><code>-l</code></td> <td>指定编译时使用的库</td></tr> <tr><td><code>-L</code></td> <td>指定编译时搜索的库路径</td></tr> <tr><td><code>-fPIC/fpic</code></td> <td>生成与位置无关的代码</td></tr> <tr><td><code>-shared</code></td> <td>生成共享目标文件。通常用在建立共享库时</td></tr> <tr><td><code>-std</code></td> <td>指定 C 方言，比如 <code>-std=c99</code>，gcc 默认方言是 <code>GNU C</code></td></tr></tbody></table> <h3 id="i-指定头文件路径"><a href="#i-指定头文件路径" class="header-anchor">#</a> -I 指定头文件路径</h3> <p>起始项目：<a href="https://gitee.com/egu0/gcc_n_makefile/tree/93c7a9c737570908cb35cc94d6b829979fd9d8cc/gcc/02_include" target="_blank" rel="noopener noreferrer">gcc/02_include · Eugene/gcc_n_makefile - 码云 - 开源中国 (gitee.com)<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <div class="language- extra-class"><pre class="language-text"><code>.
+├── add.c
+├── div.c
+├── head.h
+├── main.c
+├── mul.c
+└── sub.c
+</code></pre></div><p>编译：<code>gcc *.c</code>，获取到的 <code>a.out</code> 可通过 <code>./a.out</code> 执行</p> <hr> <p>改变目录结构，将头文件放入 <code>include</code> 文件夹内</p> <div class="language- extra-class"><pre class="language-text"><code>.
+├── add.c
+├── div.c
+├── include
+│   └── head.h
+├── main.c
+├── mul.c
+└── sub.c
+</code></pre></div><p>再次编译时出错</p> <div class="language- extra-class"><pre class="language-text"><code>main.c:2:10: fatal error: head.h: No such file or directory
+ #include &quot;head.h&quot;
+          ^~~~~~~~
+compilation terminated.
+</code></pre></div><p>改进编译命令：<code>gcc *.c -I include/</code>，使用 <code>-I</code> 指定头文件搜索目录</p> <blockquote><p><code>-I include/</code> 也可以写为 <code>-Iinclude</code>，即参数和值之间不加空格</p></blockquote> <h3 id="d-指定宏"><a href="#d-指定宏" class="header-anchor">#</a> -D 指定宏</h3> <p>如果不想在程序中定义宏，但想让它存在，可以使用 <code>-D</code> 参数，编译器会认为参数后边指定的宏是程序中存在的。</p> <div class="language-c extra-class"><pre class="language-c"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">NUMBER</span> <span class="token expression"><span class="token number">3</span></span></span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">ifdef</span> <span class="token expression">DEBUG_MODE</span></span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;我是一个程序猿，但不会爬树...\n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span></span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> NUMBER<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;Hello, GCC!!\n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>编译：<code>gcc main.c -o main -DDEBUG_MODE</code></p> <blockquote><p><code>-DDEBUG_MODE</code> 就是 <code>-D DEBUG_MODE</code></p> <p>也可以为宏指定数值，比如 <code>-DNUMBER=10</code></p></blockquote> <div class="language- extra-class"><pre class="language-text"><code>[engure@ali 01_intro]$ ./main
+我是一个程序猿，但不会爬树...
+Hello, GCC!!
+Hello, GCC!!
+Hello, GCC!!
+</code></pre></div><h3 id="gcc-与-g-的区别"><a href="#gcc-与-g-的区别" class="header-anchor">#</a> gcc 与 g++ 的区别</h3> <p>gcc 和 g++ 都能编译 c 或 cpp 程序，只不过在某些特别的方面是有区别的</p> <ol><li><strong>编译阶段</strong>： g++ 会调用 gcc，c 和 cpp 程序都由 gcc 编译。总之，gcc 和 g++ 都可以编译 c 和 cpp 代码。</li> <li><strong>链接阶段</strong> <ol><li>对于 c 程序，gcc 和 g++ 都可以自动链接到标准 C 库</li> <li>对于 cpp 程序，g++ 可以自动链接标准 C++ 库；如果需要使用 gcc 链接标准 C++ 库则需要添加<code>-lstdc++</code>参数</li></ol></li> <li>关于 <code>__cplusplus</code> 宏的定义
+<ol><li>g++ 会自动定义该宏，但这个不影响它去编译 c 程序</li> <li>gcc 需要根据文件后缀判断是否要定义该宏</li></ol></li></ol> <hr> <p>总结：</p> <ol><li>gcc 和 g++ 都可以编译 c 程序，编译程序的规则和参数都相同</li> <li>g++ 可以编译 cpp 程序，gcc 编译 cpp 程序需要添加额外参数 <code>-lstdc++</code></li> <li>gcc 和 g++ 都可以定义 <code>__cplusplus</code> 宏</li></ol> <hr> <p>动手实践</p> <div class="language-cpp extra-class"><pre class="language-cpp"><code><span class="token comment">//a.cpp</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  cout <span class="token operator">&lt;&lt;</span> <span class="token string">&quot;hello world!&quot;</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><div class="language-c extra-class"><pre class="language-c"><code><span class="token comment">//test.c</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">NUMBER</span> <span class="token expression"><span class="token number">3</span></span></span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">ifdef</span> <span class="token expression">DEBUG_MODE</span></span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;我是一个程序猿，但不会爬树...\n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;%d\n&quot;</span><span class="token punctuation">,</span> DEBUG_MODE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span></span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> NUMBER<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;Hello, GCC!!\n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>使用 <code>gcc</code> 编译：</p> <ul><li><code>gcc test.c</code> ✅</li> <li><code>gcc a.cpp</code> ❌</li> <li><code>gcc a.cpp -lstdc++</code>✅</li></ul> <p>使用 <code>g++</code> 编译：</p> <ul><li><code>g++ test.c</code>✅</li> <li><code>g++ a.cpp</code>✅</li></ul> <h2 id="静态库和动态库"><a href="#静态库和动态库" class="header-anchor">#</a> 静态库和动态库</h2> <p>不管是 Linux 还是 Windows 中的库文件，其本质和工作模式都是相同的，只不过在不同的平台上库对应的文件格式和文件后缀不同。程序中调用的库有两种，<strong>静态库和动态库</strong>，不管是哪种库文件，它们的本质还是源文件，只不过是<strong>二进制格式</strong>，只有计算机能够识别。</p> <p>在项目中使用库一般有两个目的，一是为了使程序<strong>更加简洁、不需要在项目中维护太多的源文件</strong>，另一方面是为了<strong>源代码保密</strong>，毕竟不是所有人都想把自己编写的程序开源出来。</p> <p>当我们拿到了<strong>库文件</strong>（动态库或静态库）之后想要使用还必须有这些库中提供的 API 函数的声明，也就是<strong>头文件</strong>，把这些都添加到项目中，就可以写代码了。</p> <h3 id="静态库"><a href="#静态库" class="header-anchor">#</a> 静态库</h3> <p>不同平台下静态库的命名规则：</p> <ul><li><p>Linux 中：前缀为 <code>lib</code>、后缀为 <code>.a</code>、中间为静态库的名字。比如 <code>libmath.a</code></p></li> <li><p>Windows 中：前缀为 <code>lib</code>、后缀为 <code>.lib</code>、中间为静态库的名字。比如 <code>libmath.lib</code></p></li></ul> <blockquote><p>Linux 中静态库由程序 <code>ar</code> 生成，现在静态库已经不像以前那么普遍了，这主要是因为很多程序都在使用动态库。</p></blockquote> <h4 id="制作静态库"><a href="#制作静态库" class="header-anchor">#</a> 制作静态库</h4> <p>步骤：</p> <ol><li><p>先对源文件进行汇编，获取二进制格式的目标文件</p></li> <li><p>然后使用 <code>ar</code> 工具将目标文件打包就可以得到静态文件，即静态库了</p></li></ol> <p><code>ar</code> 工具的三个参数：s</p> <ul><li><code>c</code> 创建一个库</li> <li><code>s</code> 创建目标文件索引，在创建较大的库时可以加快时间</li> <li><code>r</code> 在库中插入或替换模块。默认新的成员添加在库的结尾处，如果模块名已经存在在库中，则替换同名的模块</li></ul> <hr> <p>实操：初始<a href="https://gitee.com/egu0/gcc_n_makefile/tree/d56f97190699fba74df1e25f115ec404402ce0ee/static_dynamic_lib/01_create_static_lib" target="_blank" rel="noopener noreferrer">目录结构<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>为</p> <div class="language- extra-class"><pre class="language-text"><code>.
+├── add.c
+├── div.c
+├── include
+│   └── head.h
+├── main.c
+├── mul.c
+└── sub.c
+</code></pre></div><p>第一步：汇编，为 <code>add.c/sub.c/mul.c/div.c</code> 分别生成目标文件 <code>gcc -c add.c sub.c mul.c div.c -Iinclude</code></p> <div class="language- extra-class"><pre class="language-text"><code>.
+├── add.c
+├── add.o
+├── div.c
+├── div.o
+├── include
+│   └── head.h
+├── main.c
+├── mul.c
+├── mul.o
+├── sub.c
+└── sub.o
+</code></pre></div><p>第二步：使用 ar 工具将目标文件打包到静态库</p> <div class="language-sh extra-class"><pre class="language-sh"><code>ar rcs libcalc.a add.o sub.o div.o mul.o
+<span class="token comment"># 或</span>
+<span class="token comment"># ar rcs libcalc.a *.o</span>
+</code></pre></div><p>第三步：发布文件</p> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token punctuation">-</span> libcalc.a
+<span class="token punctuation">-</span> head.h
+</code></pre></div><h4 id="使用静态库"><a href="#使用静态库" class="header-anchor">#</a> 使用静态库</h4> <p>准备<a href="https://gitee.com/egu0/gcc_n_makefile/tree/3887216c0d05a471b504e16f4855edd7d1ee615c/static_dynamic_lib/01_create_static_lib/test_generated_lib" target="_blank" rel="noopener noreferrer">目录结构<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>：</p> <div class="language- extra-class"><pre class="language-text"><code>.
+├── head.h
+├── libcalc.a
+└── main.c
+</code></pre></div><p>编译：<code>gcc main.c -o main -L. -lcalc</code></p> <blockquote><ul><li><p><code>-L</code> 指定库所在路径</p></li> <li><p><code>-l</code> 指定库名，这里的库名需要“掐头去尾”</p></li> <li><p>参数和参数值之间可以不加空格</p></li></ul></blockquote> <h3 id="动态库"><a href="#动态库" class="header-anchor">#</a> 动态库</h3> <p>不同平台下动态库的命名规则：</p> <ul><li>Linux 中，动态库以<code>lib</code>作为前缀、<code>.so</code>作为后缀，中间部分是库名。比如<code>libmath.so</code></li> <li>Windows 中，动态库一般以<code>lib</code>作为前缀、以<code>.dll</code>作为后缀，中间部分是库名。比如<code>libmath.dll</code></li></ul> <h4 id="制作动态库"><a href="#制作动态库" class="header-anchor">#</a> 制作动态库</h4> <p>制作步骤：</p> <ol><li>首先进行汇编。与制作静态库不同的是要添加另外一个参数： <code>-fPIC/-fpic</code>，作用是使得 gcc 生成的代码是<strong>与位置无关</strong>的，也就是使用相对位置</li> <li>然后将得到的目标文件<strong>打包</strong>成动态库，依旧使用 gcc 工具，需要使用 <code>-shared</code> 参数告诉编译器生成一个动态链接库</li></ol> <hr> <p>实操</p> <p>准备<a href="https://gitee.com/egu0/gcc_n_makefile/tree/3feddb7c88a1d1f0a3a2ae6fad68e95817120f43/static_dynamic_lib/02_create_dynamic_lib" target="_blank" rel="noopener noreferrer">目录结构<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <div class="language- extra-class"><pre class="language-text"><code>.
+├── add.c
+├── div.c
+├── include
+│   └── head.h
+├── main.c
+├── mul.c
+└── sub.c
+</code></pre></div><p>1、<strong>汇编</strong>，生成目标文件 <code>gcc -c -fpic add.c sub.c mul.c div.c -Iinclude/</code></p> <p>2、打包，生成动态库</p> <div class="language-sh extra-class"><pre class="language-sh"><code>gcc <span class="token parameter variable">-shared</span> add.o sub.o mul.o div.o <span class="token parameter variable">-o</span> libcalc.so
+<span class="token comment"># 或</span>
+<span class="token comment"># gcc -shared *.o -o libcalc.so</span>
+</code></pre></div><p>3、发布动态库</p> <div class="language- extra-class"><pre class="language-text"><code>- libcalc.so
+- head.h
+</code></pre></div><h4 id="使用库文件"><a href="#使用库文件" class="header-anchor">#</a> 使用库文件</h4> <p>准备<a href="https://gitee.com/egu0/gcc_n_makefile/tree/41c1ec38c36ab012ccd77aa2f53225ff79d2e499/static_dynamic_lib/02_create_dynamic_lib/test_generated_lib" target="_blank" rel="noopener noreferrer">目录结构<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <div class="language- extra-class"><pre class="language-text"><code>.
+├── head.h
+├── libcalc.so
+└── main.c
+</code></pre></div><p>编译：<code>gcc main.c -o main -L. -lcalc</code>，可以得到 main 可执行文件</p> <p>执行 main 时出现错误</p> <div class="language- extra-class"><pre class="language-text"><code>./main: error while loading shared libraries: libcalc.so: cannot open shared object file: No such file or directory
+</code></pre></div><h3 id="加载原理"><a href="#加载原理" class="header-anchor">#</a> 加载原理</h3> <p><strong>静态库如何被加载</strong>：在链接阶段，提供的静态库会被打包到可执行程序中。当可执行程序被执行时，静态库中的代码也会一并被加载到内存中，因此不会出现静态库找不到、无法比价在的问题</p> <p><strong>动态库如何被加载</strong>：</p> <ul><li><strong>链接阶段</strong>：虽然 gcc 命令中也指定了库路径（<code>-L .</code>），但是这个路径并没有记录到可执行程序中，只是检查了这个路径下的库文件是否存在，对应的库文件并没有被打包到可执行程序中，只是在可执行程序中记录了库的名字。</li> <li><strong>执行阶段</strong>：此时会<strong>先检查需要的动态库是否可以被加载</strong>，如果加载不到则提示 “No such file or directory” 等无法找到 so 库的错误信息。<strong>当动态库中的函数在程序中被调用时，动态库才被加载到内存</strong>，如果不调用则就不加载。动态库的检测和加载操作都是有动态链接器完成的。</li></ul> <hr> <p><strong>动态链接器</strong></p> <p>动态链接器是一个独立于应用程序的进程，属于操作系统，当用户的程序需要加载动态库的时候动态链接器就开始工作了，很显然动态链接器不知道用户通过 gcc 编译程序的时候通过 <code>-L</code> 指定的路径。</p> <p>所以动态链接器在搜索某一个动态库时实际上是遵循了一个默认的搜索顺序，按照优先级从高到低顺序分别为：</p> <ol><li>可执行文件内部的 <code>DT_RPATH</code> 字段</li> <li>系统环境变量 <code>LD_LIBRARY_PATH</code></li> <li>系统动态库的缓存文件 <code>/etc/ld.so.cache</code></li> <li>存储动态库、静态库的系统目录 <code>/lib</code>、<code>/usr/lib</code> 等</li></ol> <p>如果都没找到，动态链接器就会提示动态库找不到的错误。</p> <hr> <p><strong>🔧 小工具：ldd 命令</strong> 用于查看可执行程序所以来的动态库以及是否可以找到，如果一行的最后是一个地址，比如 <code>(0x00007fff81fcd000)</code>，说明动态库可以找到，反之说明找不到</p> <div class="language- extra-class"><pre class="language-text"><code>$ ldd main
+        linux-vdso.so.1 (0x00007fff81fcd000)
+        libcalc.so =&gt; not found
+        libc.so.6 =&gt; /lib64/libc.so.6 (0x00007f0162cb6000)
+        /lib64/ld-linux-x86-64.so.2 (0x00007f016307b000)
+</code></pre></div><hr> <p><strong>解决找不到动态库的问题</strong></p> <p>方法一：配置 <code>LD_LIBRARY_PATH</code></p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token comment"># 为当前回话设置（不推荐）</span>
+$ <span class="token assign-left variable">LD_LIBRARY_PATH</span><span class="token operator">=</span><span class="token variable">$LD_LIBRARY_PATH</span>:/home/<span class="token punctuation">..</span>./test_generated_lib
+$ <span class="token builtin class-name">echo</span> <span class="token variable">$LD_LIBRARY_PATH</span>
+</code></pre></div><div class="language-sh extra-class"><pre class="language-sh"><code><span class="token comment"># 推荐修改用户级别设置 ~/.bashrc</span>
+<span class="token comment"># 生效：. ~/.bashrc</span>
+</code></pre></div><p>方法二：更新 <code>/etc/ld.so.cache</code>，这个文件是二进制文件，无法直接修改，需要进行以下几步</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token comment"># 第一步：添加动态库所在路径（不包含动态库文件名），独占一行</span>
+$ <span class="token function">sudo</span> <span class="token function">vim</span> /etc/ld.so.conf
+
+<span class="token comment"># 第二步：使用 ldconfig 更新 ld.so.conf 中的数据到 ld.so.cache 中</span>
+$ <span class="token function">sudo</span> ldconfig
+</code></pre></div><p>方法三：将库文件拷贝到系统库目录 <code>/lib</code> 或 <code>/usr/lib</code> 中（也可以是创建软连接）</p> <blockquote><p>本人没验证通过</p></blockquote> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token comment"># 创建库文件的软连接到系统目录 /lib/ 或 /usr/lib 中</span>
+$ <span class="token function">su</span> <span class="token function">ln</span> <span class="token parameter variable">-s</span> /home/<span class="token punctuation">..</span>./test_generated_lib/libcalc.so /usr/lib/libcalc.so
+</code></pre></div><h3 id="优缺点对比"><a href="#优缺点对比" class="header-anchor">#</a> 优缺点对比</h3> <p><strong>静态库</strong></p> <ul><li>优点：库被打包到程序中，加载速度快；发布时无需提供静态库，移植方便</li> <li>缺点：相同的库文件可能被多个程序加载多次，耗费资源，浪费内存；库文件更新需要重新编译项目生成新的可执行程序，浪费时间</li></ul> <p><strong>动态库</strong></p> <ul><li>优点：不同进程间共享资源，节省内存空间；动态库升级简单，只需要替换库文件，无需重新编译应用程序；开发者可以控制何时加载动态库，不调用库函数时动态库不会被加载</li> <li>缺点：加载速度比静态库慢，考虑到当前计算机性能可以忽略此差异；发布可执行程序时需要一并提供它所依赖的动态库</li></ul> <h3 id="选择标准"><a href="#选择标准" class="header-anchor">#</a> 选择标准</h3> <p>如果源文件比较少，则制作为静态库；如果比较多，则制作为动态库。</p> <h2 id="makefile"><a href="#makefile" class="header-anchor">#</a> makefile</h2> <p>当源文件比较少时，使用 gcc 命令进行程序编译是比较方便的。但当工程中的文件数逐渐增多，甚至变得十分庞大的时候，使用 gcc 命令编译就会显得力不从心。这种情况下我们需要借助项目构造工具 <code>make</code> 帮助我们完成这个艰巨的任务。</p> <p><code>make</code> 是一个用于解释 Makefile 文件的工具，一般来说，大多数 IDE 都有这个命令。</p> <p><code>make</code> 工具在构造项目时需要加载一个叫做 <code>makefile</code> 的文件，该文件定义了整个工程的编译规则。具体地，makefile 定义了一系列规则来指定哪些文件需要先编译，哪些文件需要后编译，那些文件需要重新编译，甚至于进行更加复杂的操作。makefile 就像一个 shell 脚本一样，其中可以执行操作系统的命令。</p> <p>makefile 带来的最大好处是<strong>自动化编译</strong>。只需一个 make 命令，整个项目完全自动编译，极大地提高了软件开发效率。</p> <p>makefile 文件有两种命名方式，<code>makefile</code>/<code>Makefile</code>，构建项目的时候在哪个目录下执行<code>make</code>构建命令，这个目录下的 makefile 文件就会被加载。</p> <h3 id="规则"><a href="#规则" class="header-anchor">#</a> 规则</h3> <p>makfile 的框架是由<strong>规则</strong>构成的。规则的格式为</p> <div class="language- extra-class"><pre class="language-text"><code>targe1,target2,...:depend1,depend2,...
+	command-1
+	command-2
+	...
+</code></pre></div><ul><li><code>command</code>命令：当前规则所定义的动作，支持多条，通常为 shell 命令，比如 cd 目录、gcc 编译命令、生成库文件等</li> <li><code>depend</code>依赖：定义规则所需的依赖文件，支持为空或多项，可以在命令中使用这些依赖。A 规则的依赖可以是 B 规则的目标，这称为<strong>规则嵌套</strong></li> <li><code>target</code>目标：指定规则产出的目标文件，支持多项，目标文件应该与命令对应（不对应也没关系）。如果一个目标没有被生成，则该目标被称为<strong>伪目标</strong></li></ul> <p>举例：</p> <div class="language-makefile extra-class"><pre class="language-makefile"><code><span class="token comment"># 有源文件 a.c、b.c、c.c、head.h 四个，需要生成可执行程序 app</span>
+<span class="token target symbol">app</span><span class="token punctuation">:</span>a.c b.c c.c
+	gcc a.c b.c c.c -o app
+</code></pre></div><div class="language-makefile extra-class"><pre class="language-makefile"><code><span class="token comment"># 示例：有多个目标、多个依赖、多条命令</span>
+<span class="token target symbol">app1,app2</span><span class="token punctuation">:</span>a.c b.c c.c d.c
+	gcc a.c b.c -o app1
+	gcc c.c d.c -o app2
+</code></pre></div><blockquote><p>在规则中定义多条命令时，默认情况下第一条执行失败后就不会执行后续的命令了</p> <p>解决：在可能出错的命令前添加<code>-</code>，比如 <code>- mkdir /abc</code>，这样如果该条命令失败了其后的命令依旧会继续执行</p></blockquote> <div class="language-makefile extra-class"><pre class="language-makefile"><code><span class="token comment"># 示例：规则嵌套</span>
+<span class="token comment"># 规则1。三个依赖项分别依赖了三条后续的规则。依赖项可以为空或不存在的</span>
+<span class="token target symbol">app</span><span class="token punctuation">:</span>a.o b.o c.o
+	gcc a.o b.o c.o -o app
+<span class="token comment"># .c 分别生成 .o 文件</span>
+<span class="token target symbol">a.o</span><span class="token punctuation">:</span>a.c
+	gcc -c a.c
+<span class="token target symbol">b.o</span><span class="token punctuation">:</span>b.c
+	gcc -c b.c
+<span class="token target symbol">c.o</span><span class="token punctuation">:</span>c.c
+	gcc -c c.c
+</code></pre></div><h3 id="工作原理"><a href="#工作原理" class="header-anchor">#</a> 工作原理</h3> <h4 id="规则的运行"><a href="#规则的运行" class="header-anchor">#</a> 规则的运行</h4> <p>在调用 make 命令编译程序是，make 命令会<strong>先找到 makefile 文件中从上到下第一条规则</strong>，分析并执行其命令。如果第一条规则所指定的依赖（文件）是不存在的，那么会按照依赖项的先后顺序<strong>递归搜索</strong>其他规则以生成每个规则所需的依赖，直到所有依赖都被生成再执行第一条规则的所有命令。如果某项依赖或中间依赖不能被生成，则会报错。</p> <p>示例：</p> <p><code>Makefile</code></p> <div class="language-makefile extra-class"><pre class="language-makefile"><code><span class="token target symbol">c</span><span class="token punctuation">:</span>x y
+	cat x y &gt; c
+<span class="token target symbol">y</span><span class="token punctuation">:</span>
+	echo <span class="token string">'y'</span> &gt; y
+<span class="token target symbol">x</span><span class="token punctuation">:</span>
+	echo <span class="token string">'x'</span> &gt; x
+<span class="token target symbol">z</span><span class="token punctuation">:</span>
+	echo <span class="token string">'zzz~'</span>
+</code></pre></div><p>使用 make 命令</p> <div class="language-sh extra-class"><pre class="language-sh"><code>$ <span class="token function">make</span>
+<span class="token builtin class-name">echo</span> <span class="token string">'x'</span> <span class="token operator">&gt;</span> x
+<span class="token builtin class-name">echo</span> <span class="token string">'y'</span> <span class="token operator">&gt;</span> y
+<span class="token function">cat</span> x y <span class="token operator">&gt;</span> c
+
+$ <span class="token function">make</span> x
+make: <span class="token string">'x'</span> is up to date.
+
+$ <span class="token function">make</span> z
+<span class="token builtin class-name">echo</span> <span class="token string">'zzz~'</span>
+zzz~
+</code></pre></div><p>尝试做一些改变：修改第一个规则的依赖为 <code>x y q</code> 再次 make 会发生什么？</p> <h4 id="命令执行时机"><a href="#命令执行时机" class="header-anchor">#</a> 命令执行时机</h4> <p>为了简化问题描述，假设 makefile 为</p> <div class="language-makefile extra-class"><pre class="language-makefile"><code><span class="token target symbol">dog.png</span><span class="token punctuation">:</span>dog.jpg
+	img-converter dog.jpg dog.png <span class="token string">&quot;注:命令是自己造的&quot;</span>
+</code></pre></div><ul><li>如果目标不存在，则执行命令通过依赖生成目标，此时<strong>目标文件更新时间 &gt; 依赖文件更新时间</strong></li> <li>如果目标存在，则需要比对二者的更新时间：
+<ul><li><code>目标&gt;依赖</code>：依赖没变，同时假定没有第三者修改过目标，所以无需再次执行命令</li> <li><code>目标&lt;依赖</code>：依赖改变了，需要再次执行命令以更新目标</li></ul></li></ul> <h4 id="自动构建依赖"><a href="#自动构建依赖" class="header-anchor">#</a> 自动构建依赖</h4> <p>make 是一个功能强大的构建工具，虽然 make 需要根据 makefile 中指定的规则来完成源文件的编译，但开发者有时难免会因为不严谨而漏写一些规则，此时仍旧可以编译成功，这是因为 make 具有自动推导的能力，不完全依赖 makefile。</p> <p>比如：使用 make 编译 .c 文件，源文件的编译规则不用明确给出。这是因为 make 运行时会使用一个默认的编译规则，按照默认规则完成对 .c 文件的编译，生成对应的 .o 文件。它使用命令 <code>cc -c</code> 来编译 .c 文件。</p> <p>示例：只需给出 .o 文件名，make 工具就会自动为这个 .o 文件寻找合适的依赖文件，即对应的同名 .c 文件，并使用默认的命令来构建这个 .o 文件</p> <p><code>Makefile</code></p> <div class="language-makefile extra-class"><pre class="language-makefile"><code><span class="token comment"># 假设有源文件 head.h,add.c,div.c,mul.c,sub.c,main.c</span>
+<span class="token target symbol">calc</span><span class="token punctuation">:</span>add.o sub.o div.o mul.o main.o
+    gcc add.o sub.o div.o mul.o main.o -o main
+</code></pre></div><p>使用 make 命令生成可执行文件</p> <div class="language-sh extra-class"><pre class="language-sh"><code>$ <span class="token function">make</span>
+cc    <span class="token parameter variable">-c</span> <span class="token parameter variable">-o</span> add.o add.c
+cc    <span class="token parameter variable">-c</span> <span class="token parameter variable">-o</span> sub.o sub.c
+cc    <span class="token parameter variable">-c</span> <span class="token parameter variable">-o</span> div.o div.c
+cc    <span class="token parameter variable">-c</span> <span class="token parameter variable">-o</span> mul.o mul.c
+cc    <span class="token parameter variable">-c</span> <span class="token parameter variable">-o</span> main.o main.c
+gcc add.o sub.o div.o mul.o main.o <span class="token parameter variable">-o</span> main
+
+$ ./main
+a <span class="token operator">=</span> <span class="token number">30</span>, b <span class="token operator">=</span> <span class="token number">20</span>
+a+b<span class="token operator">=</span><span class="token number">50</span>
+a-b<span class="token operator">=</span><span class="token number">10</span>
+a*b<span class="token operator">=</span><span class="token number">600</span>
+a/b<span class="token operator">=</span><span class="token number">1.500000</span>
+</code></pre></div><h3 id="编写-makefile-开始编译"><a href="#编写-makefile-开始编译" class="header-anchor">#</a> 编写 makefile 开始编译</h3> <p>准备<a href="https://gitee.com/egu0/gcc_n_makefile/tree/586ba87f404d9c420116a39a6169eddbc991b51c/makefile/01_basis" target="_blank" rel="noopener noreferrer">项目结构<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>：</p> <div class="language- extra-class"><pre class="language-text"><code>.
+├── add.c
+├── div.c
+├── head.h
+├── main.c
+├── Makefile
+├── mul.c
+└── sub.c
+</code></pre></div><p><code>Makefile</code></p> <div class="language-makefile extra-class"><pre class="language-makefile"><code><span class="token target symbol">main</span><span class="token punctuation">:</span>add.c sub.c div.c mul.c main.c
+	gcc add.c sub.c div.c mul.c main.c -o main
+</code></pre></div><hr> <p>思考：以上 Makefile 有何问题？</p> <p>答：资源浪费。如果只改动了一个 .c 文件，则重新构建时也会同时编译其他 .c 文件</p> <p>改进：指定依赖 .o 文件</p> <div class="language-makefile extra-class"><pre class="language-makefile"><code><span class="token target symbol">main</span><span class="token punctuation">:</span>add.o sub.o div.o mul.o main.o
+	gcc add.o sub.o div.o mul.o main.o -o main
+<span class="token target symbol">add.o</span><span class="token punctuation">:</span>add.c
+	gcc add.c -c
+<span class="token target symbol">sub.o</span><span class="token punctuation">:</span>sub.c
+	gcc sub.c -c
+<span class="token target symbol">mul.o</span><span class="token punctuation">:</span>mul.c
+	gcc mul.c -c
+<span class="token target symbol">div.o</span><span class="token punctuation">:</span>div.c
+	gcc div.c -c
+<span class="token target symbol">main.o</span><span class="token punctuation">:</span>main.c
+	gcc main.c -c
+</code></pre></div><div class="language-sh extra-class"><pre class="language-sh"><code>$ <span class="token function">make</span>
+gcc add.c <span class="token parameter variable">-c</span>
+gcc sub.c <span class="token parameter variable">-c</span>
+gcc div.c <span class="token parameter variable">-c</span>
+gcc mul.c <span class="token parameter variable">-c</span>
+gcc main.c <span class="token parameter variable">-c</span>
+gcc add.o sub.o div.o mul.o main.o <span class="token parameter variable">-o</span> main
+
+$ <span class="token function">make</span>
+gcc main.c <span class="token parameter variable">-c</span>
+gcc add.o sub.o div.o mul.o main.o <span class="token parameter variable">-o</span> main
+</code></pre></div><hr> <p>以上改动后的 makefile 有何问题呢</p> <p>答：如果源文件太多，<code>gcc x.c -c</code> 这一步需要重复很多次，很费劲。</p> <p>改进：通过<strong>变量</strong>解决</p> <h3 id="变量"><a href="#变量" class="header-anchor">#</a> 变量</h3> <p>使用 makefile 定义规则时，为了使代码更灵活，我们可以在里边使用变量。makefile 中变量分为三种：<code>自定义变量</code>、<code>预定义变量</code> 和 <code>自动变量</code></p> <h4 id="自定义变量"><a href="#自定义变量" class="header-anchor">#</a> 自定义变量</h4> <p>语法：添加自定义变量、使用自定义变量</p> <div class="language-makefile extra-class"><pre class="language-makefile"><code><span class="token comment"># 正确示例</span>
+key<span class="token operator">=</span>value
+name<span class="token operator">=</span>butterfly
+number<span class="token operator">=</span>
+
+<span class="token comment"># 错误示例</span>
+<span class="token comment">#content</span>
+
+<span class="token target symbol">print</span><span class="token punctuation">:</span>
+	echo <span class="token variable">$</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span>
+</code></pre></div><p>另一个示例</p> <div class="language-makefile extra-class"><pre class="language-makefile"><code><span class="token comment">#main:add.o sub.o div.o mul.o main.o</span>
+<span class="token comment">#	gcc add.o sub.o div.o mul.o main.o -o main</span>
+
+obj_files<span class="token operator">=</span>add.o sub.o div.o mul.o main.o
+target<span class="token operator">=</span>main
+<span class="token target symbol"><span class="token variable">$</span>(target)</span><span class="token punctuation">:</span><span class="token variable">$</span><span class="token punctuation">(</span>obj_files<span class="token punctuation">)</span>
+	gcc <span class="token variable">$</span><span class="token punctuation">(</span>obj_files<span class="token punctuation">)</span> -o <span class="token variable">$</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span>
+</code></pre></div><h4 id="预定义变量"><a href="#预定义变量" class="header-anchor">#</a> 预定义变量</h4> <p>用户可以直接使用 makefile 重一些已经定义的变量，这些变量通常被称为预定义变量，它们的名字一般是大写的：</p> <table><thead><tr><th>变 量 名</th> <th>含 义</th> <th>默 认 值</th></tr></thead> <tbody><tr><td>AR</td> <td>生成静态库库文件的程序名称</td> <td>ar</td></tr> <tr><td>AS</td> <td>汇编编译器的名称</td> <td>as</td></tr> <tr><td>CC</td> <td>C 语言编译器的名称</td> <td>cc</td></tr> <tr><td>CPP</td> <td>C 语言预编译器的名称</td> <td>$(CC) -E</td></tr> <tr><td>CXX</td> <td>C++语言编译器的名称</td> <td>g++</td></tr> <tr><td>FC</td> <td>FORTRAN 语言编译器的名称</td> <td>f77</td></tr> <tr><td>RM</td> <td>删除文件程序的名称</td> <td>rm -f</td></tr> <tr><td>ARFLAGS</td> <td>生成静态库库文件程序的选项</td> <td>无默认值</td></tr> <tr><td>ASFLAGS</td> <td>汇编语言编译器的编译选项</td> <td>无默认值</td></tr> <tr><td>CFLAGS</td> <td>C 语言编译器的编译选项</td> <td>无默认值</td></tr> <tr><td>CPPFLAGS</td> <td>C 语言预编译的编译选项</td> <td>无默认值</td></tr> <tr><td>CXXFLAGS</td> <td>C++语言编译器的编译选项</td> <td>无默认值</td></tr> <tr><td>FFLAGS</td> <td>FORTRAN 语言编译器的编译选项</td> <td>无默认值</td></tr></tbody></table> <p>示例</p> <div class="language-makefile extra-class"><pre class="language-makefile"><code>obj_files<span class="token operator">=</span>add.o sub.o div.o mul.o main.o
+target<span class="token operator">=</span>main
+<span class="token comment"># 通过 CFLAGS 指定 gcc 编译参数</span>
+CFLAGS<span class="token operator">=</span>-o3
+<span class="token target symbol"><span class="token variable">$</span>(target)</span><span class="token punctuation">:</span><span class="token variable">$</span><span class="token punctuation">(</span>obj_files<span class="token punctuation">)</span>
+	gcc <span class="token variable">$</span><span class="token punctuation">(</span>obj_files<span class="token punctuation">)</span> -o <span class="token variable">$</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span> <span class="token variable">$</span><span class="token punctuation">(</span>CFLAGS<span class="token punctuation">)</span>
+</code></pre></div><h4 id="自动变量"><a href="#自动变量" class="header-anchor">#</a> 自动变量</h4> <p>自动变量的特点：</p> <ol><li>只能在规则的命令中使用</li> <li>提供了多种方式来表示目标文件或依赖文件</li></ol> <table><thead><tr><th>变量</th> <th>描述</th></tr></thead> <tbody><tr><td><code>$*</code></td> <td>表示目标文件的名称，不包含扩展名。<strong>没验证出来</strong></td></tr> <tr><td><code>$@</code></td> <td>表示目标文件的名称，包含扩展名</td></tr> <tr><td><code>$&lt;</code></td> <td>表示依赖项中第一个依赖文件的名称，包含扩展名</td></tr> <tr><td><code>$?</code></td> <td>表示依赖项中所有比目标文件时间戳晚的依赖文件，以空格分割</td></tr> <tr><td><code>$+</code></td> <td>表示所有依赖文件名称，以空格分割，按照出现的先后为顺序，<br>可能包含重复的项</td></tr> <tr><td><code>$^</code></td> <td>表示所有依赖文件名称，以空格分割，按照出现的先后为顺序，<br>不包含重复的项</td></tr></tbody></table> <p>示例</p> <div class="language-makefile extra-class"><pre class="language-makefile"><code><span class="token comment">#main:add.o sub.o div.o mul.o main.o</span>
+<span class="token comment">#	gcc add.o sub.o div.o mul.o main.o -o main</span>
+
+<span class="token target symbol">main</span><span class="token punctuation">:</span>add.o sub.o div.o mul.o main.o
+	gcc <span class="token variable">$^</span> -o <span class="token variable">$@</span>
+</code></pre></div><h3 id="模式匹配"><a href="#模式匹配" class="header-anchor">#</a> 模式匹配</h3> <p>之前的一个 Makefile：</p> <div class="language-makefile extra-class"><pre class="language-makefile"><code><span class="token target symbol">main</span><span class="token punctuation">:</span>add.o sub.o div.o mul.o main.o
+	gcc add.o sub.o div.o mul.o main.o -o main
+<span class="token target symbol">add.o</span><span class="token punctuation">:</span>add.c
+	gcc add.c -c
+<span class="token target symbol">sub.o</span><span class="token punctuation">:</span>sub.c
+	gcc sub.c -c
+<span class="token target symbol">mul.o</span><span class="token punctuation">:</span>mul.c
+	gcc mul.c -c
+<span class="token target symbol">div.o</span><span class="token punctuation">:</span>div.c
+	gcc div.c -c
+<span class="token target symbol">main.o</span><span class="token punctuation">:</span>main.c
+	gcc main.c -c
+</code></pre></div><p>可以发现，3~12 行所定义的规则都在做同一件事，但是由于文件名不同不得不在文件中写出多个规则，这就让 makefile 中的代码显得很冗余。</p> <p>我们可以将 3~12 中所有规则整理成一个模板，所有类似的操作都通过模板去匹配，这样可以简化 makefile 代码，但也降低了代码可读性</p> <div class="language-makefile extra-class"><pre class="language-makefile"><code><span class="token comment"># 模式匹配</span>
+<span class="token comment"># %是一个通配符，指代文件名。%&lt; 是一个自动变量，也可以是 $^</span>
+<span class="token target symbol">%.o</span><span class="token punctuation">:</span>%.c
+	gcc %&lt; -c
+</code></pre></div><p>改造后的 <code>Makefile</code></p> <div class="language-makefile extra-class"><pre class="language-makefile"><code><span class="token comment"># 定义变量</span>
+obj_files<span class="token operator">=</span>add.o sub.o div.o mul.o main.o
+target<span class="token operator">=</span>main
+
+<span class="token comment"># 定义规则</span>
+<span class="token comment"># 匹配上 %.o 的依赖会走模式模版</span>
+<span class="token target symbol"><span class="token variable">$</span>(target)</span><span class="token punctuation">:</span><span class="token variable">$</span><span class="token punctuation">(</span>obj_files<span class="token punctuation">)</span>
+	gcc <span class="token variable">$</span><span class="token punctuation">(</span>obj_files<span class="token punctuation">)</span> -o <span class="token variable">$</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span>
+
+<span class="token comment"># 模式匹配模版</span>
+<span class="token target symbol">%.o</span><span class="token punctuation">:</span>%.c
+	gcc <span class="token variable">$&lt;</span> -c
+</code></pre></div><p>还有哪些问题呢？</p> <p>答：如果项目中源文件比较多，那么此时创建变量 <code>obj_files</code> 时需要指定一大堆 .o 文件，很麻烦</p> <p>解决方法：调用 makefile 中的函数自动搜索文件名</p> <h3 id="函数"><a href="#函数" class="header-anchor">#</a> 函数</h3> <p>makefile 中有很多函数并且<strong>所有函数都是有返回值的</strong>，与其他语言中函数调用有所不同的是，makefile 中调用函数的方式是 <code>$(函数名 参数1 餐数2 ...)</code></p> <h4 id="wildcard"><a href="#wildcard" class="header-anchor">#</a> wildcard</h4> <p>作用：获取指定目录下指定类型的文件名，返回值是一个字符串，表示搜索的文件，它们以空格相隔</p> <div class="language-makefile extra-class"><pre class="language-makefile"><code><span class="token variable">$</span><span class="token punctuation">(</span><span class="token function">wildcard</span> pattern-1 pattern-2 ...<span class="token punctuation">)</span>
+<span class="token comment">#例如</span>
+<span class="token variable">$</span><span class="token punctuation">(</span><span class="token function">wildcard</span> ./*.c ./sub/*.c<span class="token punctuation">)</span>
+</code></pre></div><ul><li><code>pattern</code>参数：文件匹配模式，支持多个</li> <li>返回值：文件列表，字符串形式，以空格分割</li></ul> <p>示例</p> <div class="language-makefile extra-class"><pre class="language-makefile"><code>res_path<span class="token operator">=</span><span class="token variable">$</span><span class="token punctuation">(</span><span class="token function">wildcard</span> ./*.c ./sub1/*.c<span class="token punctuation">)</span>
+<span class="token target symbol">print</span><span class="token punctuation">:</span>
+	echo <span class="token variable">$</span><span class="token punctuation">(</span>res_path<span class="token punctuation">)</span>
+</code></pre></div><h4 id="patsubst"><a href="#patsubst" class="header-anchor">#</a> patsubst</h4> <p>作用：按照指定的模式替换指定的文件名的后缀</p> <div class="language-makefile extra-class"><pre class="language-makefile"><code><span class="token variable">$</span><span class="token punctuation">(</span><span class="token function">patsubst</span> &lt;pattern&gt;, &lt;replacement&gt;, &lt;text&gt;<span class="token punctuation">)</span>
+<span class="token comment"># 参数之间需要添加 ,</span>
+</code></pre></div><ul><li><code>pattern</code> 模式字符串，指出要被替换的后缀。无需关心文件名和路径，用<code>%</code>表示通配符，比如<code>%.c</code> 表示替换 <code>.c</code> 后缀</li> <li><code>replacement</code> 模式字符串，同 <code>pattern</code> ，表示后缀要被替换成什么，比如 <code>%.o</code> 表示文件后缀要被替换成<code>.o</code></li> <li><code>text</code> 字符串，表示要被处理的路径</li></ul> <p>示例</p> <div class="language-makefile extra-class"><pre class="language-makefile"><code><span class="token comment"># 搜索文件</span>
+res_path<span class="token operator">=</span><span class="token variable">$</span><span class="token punctuation">(</span><span class="token function">wildcard</span> ./*.c ./sub1/*.c<span class="token punctuation">)</span>
+<span class="token comment"># 替换后缀</span>
+obj_file<span class="token operator">=</span><span class="token variable">$</span><span class="token punctuation">(</span><span class="token function">patsubst</span> %.c, %.o, <span class="token variable">$</span><span class="token punctuation">(</span>res_path<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token target symbol">print</span><span class="token punctuation">:</span>
+	echo <span class="token variable">$</span><span class="token punctuation">(</span>obj_file<span class="token punctuation">)</span>
+</code></pre></div><h3 id="完善-makefile"><a href="#完善-makefile" class="header-anchor">#</a> 完善 makefile</h3> <p>之前得到的 Makefile</p> <div class="language-makefile extra-class"><pre class="language-makefile"><code><span class="token comment"># 定义变量</span>
+obj_files<span class="token operator">=</span>add.o sub.o div.o mul.o main.o
+target<span class="token operator">=</span>main
+
+<span class="token comment"># 定义规则</span>
+<span class="token comment"># 匹配上 %.o 的依赖会走模式模版</span>
+<span class="token target symbol"><span class="token variable">$</span>(target)</span><span class="token punctuation">:</span><span class="token variable">$</span><span class="token punctuation">(</span>obj_files<span class="token punctuation">)</span>
+	gcc <span class="token variable">$</span><span class="token punctuation">(</span>obj_files<span class="token punctuation">)</span> -o <span class="token variable">$</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span>
+
+<span class="token comment"># 模式匹配模版</span>
+<span class="token target symbol">%.o</span><span class="token punctuation">:</span>%.c
+	gcc <span class="token variable">$&lt;</span> -c
+</code></pre></div><p>继续优化：使用函数搜索文件、替换文件后缀</p> <div class="language-makefile extra-class"><pre class="language-makefile"><code>c_files<span class="token operator">=</span><span class="token variable">$</span><span class="token punctuation">(</span><span class="token function">wildcard</span> ./*.c<span class="token punctuation">)</span>
+<span class="token comment"># obj_files=add.o sub.o div.o mul.o main.o</span>
+obj_files<span class="token operator">=</span><span class="token variable">$</span><span class="token punctuation">(</span><span class="token function">patsubst</span> %.c, %.o, <span class="token variable">$</span><span class="token punctuation">(</span>c_files<span class="token punctuation">)</span><span class="token punctuation">)</span>
+target<span class="token operator">=</span>main
+
+<span class="token comment"># 匹配上 %.o 的依赖会走模式模版</span>
+<span class="token target symbol"><span class="token variable">$</span>(target)</span><span class="token punctuation">:</span><span class="token variable">$</span><span class="token punctuation">(</span>obj_files<span class="token punctuation">)</span>
+	gcc <span class="token variable">$</span><span class="token punctuation">(</span>obj_files<span class="token punctuation">)</span> -o <span class="token variable">$</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span>
+
+<span class="token comment"># 模式匹配模版</span>
+<span class="token target symbol">%.o</span><span class="token punctuation">:</span>%.c
+	gcc <span class="token variable">$&lt;</span> -c
+</code></pre></div><h3 id="伪目标的声明"><a href="#伪目标的声明" class="header-anchor">#</a> 伪目标的声明</h3> <p><code>Makefile</code></p> <div class="language-makefile extra-class"><pre class="language-makefile"><code>...
+
+<span class="token comment"># 不添加依赖，clean 是一个伪目标，不对应任何实体文件</span>
+<span class="token target symbol">clean</span><span class="token punctuation">:</span>
+	rm -rf *.o <span class="token variable">$</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span>
+</code></pre></div><p>问题：当 makefile 同级目录下有一个名为 <code>clean</code> 文件，再执行<code>make clean</code>时会报错</p> <p>原因：之前【工作原理/命令执行时机】一节讲过，当目标文件不存在时一定可以执行；如果存在了则需要比较目标和依赖两文件的时间戳，满足条件才可以执行</p> <p>解决：声明<code>clean</code>是一个伪目标，这样 make 就不会对它进行时间戳检测了</p> <div class="language-makefile extra-class"><pre class="language-makefile"><code>...
+
+<span class="token comment"># 声明 clean 是一个伪目标，这样 make 就不会对它进行时间戳检测了</span>
+<span class="token builtin-target builtin">.PHONY</span><span class="token punctuation">:</span>clean
+<span class="token target symbol">clean</span><span class="token punctuation">:</span>
+	rm -rf *.o <span class="token variable">$</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span>
+</code></pre></div><h2 id="gdb"><a href="#gdb" class="header-anchor">#</a> gdb</h2> <p>gdb 是 GNU 软件系统社区提供的调试器，同 gcc 配套组成了一套完整的开发环境，可移植性好，支持非常多的体系结构并被移植到各种系统中（包括各种类 Unix 系统和 Windows 系统里的 MinGW 和 Cygwin）。此外，除了 C 语言外，gcc/gdb 还支持包括 C++、Objective-C、Ada 和 Pascal 等各种语言后端的编译和调试。gcc/gdb 是 Linux 和许多类 Unix 系统中的标准开发环境，Linux 内核也是专门针对 gcc 进行编码的。</p> <p>gdb 是一套字符界面的程序集，可以使用命令 gdb 加载要调试的程序。</p> <h3 id="调试准备"><a href="#调试准备" class="header-anchor">#</a> 调试准备</h3> <p>使用 gcc 编译程序时，如果为了进行调试，需要添加<code>-g</code>参数。另外还有一些选项，比如尽量不影响程序行为的情况下使用<code>-O0</code>关掉编译器的优化选项；使用<code>-Wall</code>选项打开所有提示信息可以发现很多问题从而避免一些不必要的 BUG。</p> <p><code>-g</code> 选项的作用：在可执行文件中加入源代码信息，比如可执行文件中第几条机器指令对应源代码的第几行，但并不是把整个源文件嵌入到可执行文件中，所以在调试时必须保证 gdb 能找到源文件。</p> <div class="language-c extra-class"><pre class="language-c"><code><span class="token comment">//main.c</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&lt;stdio.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">NUM</span> <span class="token expression"><span class="token number">10</span></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span><span class="token operator">*</span> argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;参数个数：%d\n&quot;</span><span class="token punctuation">,</span> argc<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> argc<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;%d\n&quot;</span><span class="token punctuation">,</span> NUM<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;参数 %d: %s\n&quot;</span><span class="token punctuation">,</span> i<span class="token punctuation">,</span> argv<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>示例：生成可用于调试的可执行程序</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token comment"># 可调试版本</span>
+$ gcc main.c <span class="token parameter variable">-g</span> <span class="token parameter variable">-Wall</span> <span class="token parameter variable">-O0</span> <span class="token parameter variable">-o</span> main1
+
+<span class="token comment"># 不可调试版本</span>
+$ gcc main.c <span class="token parameter variable">-Wall</span> <span class="token parameter variable">-O0</span> <span class="token parameter variable">-o</span> main2
+
+<span class="token comment"># 比较二者大小</span>
+$ ll main1 main2
+-rwxrwxr-x <span class="token number">1</span> engure engure <span class="token number">19912</span> Feb <span class="token number">22</span> <span class="token number">20</span>:56 main1
+-rwxrwxr-x <span class="token number">1</span> engure engure <span class="token number">17528</span> Feb <span class="token number">22</span> <span class="token number">20</span>:56 main2
+</code></pre></div><h3 id="gdb-基本使用"><a href="#gdb-基本使用" class="header-anchor">#</a> gdb 基本使用</h3> <p><strong>gdb 启动和退出</strong></p> <ul><li>启动：<code>gdb &lt;executable&gt;</code></li> <li>退出：使用 q 或 quit 命令</li></ul> <div class="language-sh extra-class"><pre class="language-sh"><code>$ gdb main1 -<span class="token operator">&gt;</span> 启动
+<span class="token punctuation">..</span>.
+<span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> l		  -<span class="token operator">&gt;</span> 查看源码
+<span class="token punctuation">..</span>.
+<span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> q     -<span class="token operator">&gt;</span> 退出
+</code></pre></div><p>在命令行中执行程序，为程序传递参数</p> <div class="language-sh extra-class"><pre class="language-sh"><code>$ ./main1 <span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span>
+参数个数：4
+<span class="token number">10</span>
+参数 <span class="token number">0</span>: ./main1
+<span class="token number">10</span>
+参数 <span class="token number">1</span>: <span class="token number">1</span>
+<span class="token number">10</span>
+参数 <span class="token number">2</span>: <span class="token number">2</span>
+<span class="token number">10</span>
+参数 <span class="token number">3</span>: <span class="token number">3</span>
+</code></pre></div><p><strong>在 gdb 中调试时，为程序传递参数</strong></p> <div class="language- extra-class"><pre class="language-text"><code>...
+(gdb) set args 1 2 3
+(gdb) show args
+</code></pre></div><p><strong>启动程序</strong>（设置完参数后），有两种方法</p> <div class="language- extra-class"><pre class="language-text"><code># 方法1：执行 main 中第一行后停下来。输入命令 c/continue 继续执行
+(gdb) start
+
+# 方法2：r/run，执行 main，遇断点则停下，否知执行完毕
+(gdb) run
+</code></pre></div><h3 id="查看代码"><a href="#查看代码" class="header-anchor">#</a> 查看代码</h3> <p>通过<code>l</code> 或 <code>list</code>命令我们可以查看项目中任意一个文件中的内容，并且可以通过文件行号、函数名等方式查看</p> <h4 id="查看当前文件"><a href="#查看当前文件" class="header-anchor">#</a> 查看当前文件</h4> <p>一般来说一个项目中有很多源文件，默认情况下可通过 <code>list</code> 命令查看程序入口函数 <code>main</code> 所在那个文件的代码。简单来说，启动 gdb 后，默认的当前文件为 main 函数所在的文件。</p> <div class="language- extra-class"><pre class="language-text"><code># 从第一行开始查看
+(gdb) l
+
+# 查看指定行号附近的代码
+(gdb) l 行号
+
+# 查看指定函数的代码
+(gdb) l 函数名
+</code></pre></div><p>注意：通过 list 命令查看文件代码，<strong>默认显示 10 行</strong>，如果要<strong>继续查看</strong>后边的内容，可以继续执行 list 命令，也可以直接按回车（表示再次执行上一次执行的哪个 gdb 命令）</p> <h4 id="切换文件"><a href="#切换文件" class="header-anchor">#</a> 切换文件</h4> <p>若要查看其他文件，只需要在 list 命令后边将要查看的文件名指定出来就可以了。</p> <p>切换命令执行完后，这个文件就变了当前文件，即<strong>自动文件切换</strong>。</p> <div class="language- extra-class"><pre class="language-text"><code>(gdb) l 文件名:行号
+# 比如 (gdb) l select.cpp:selectionSort
+
+(gdb) l 文件名:函数
+# 比如 (gdb) l select.cpp:selectionSort
+</code></pre></div><h4 id="设置显示的行数"><a href="#设置显示的行数" class="header-anchor">#</a> 设置显示的行数</h4> <p>默认通过 list 命令只能一次只能查看 10 行代码，如果想看的更多，可以通过<code>set listsize</code>设置。同样地，可以通过<code>show listsize</code>查看当前显示的行数。这其中的 <code>listsize</code> 可简写为 <code>list</code></p> <div class="language- extra-class"><pre class="language-text"><code># 查看
+(gdb) show listsize
+Number of source lines gdb will list by default is 10.
+(gdb) show list
+Number of source lines gdb will list by default is 10.
+
+# 设置
+(gdb) set listsize 20
+(gdb) set list 20
+</code></pre></div><hr> <p>实操：<a href="https://gitee.com/egu0/gcc_n_makefile/tree/305a47993478cd023fc5f579da84bb373449d838/gdb/02_list" target="_blank" rel="noopener noreferrer">目录结构<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <div class="language- extra-class"><pre class="language-text"><code>.
+├── head.h
+├── insert.cpp
+├── Makefile
+├── select.cpp
+└── test.cpp
+</code></pre></div><h3 id="断点操作"><a href="#断点操作" class="header-anchor">#</a> 断点操作</h3> <p>使用 <code>break</code> 或 <code>b</code> 命令在代码的某一行打断点，进行调试时，程序运行到断点位置就会阻塞，这样我们可以通过 gdb 得到我们想要的信息了比如某个变量的实际值。</p> <h4 id="设置-查看断点"><a href="#设置-查看断点" class="header-anchor">#</a> 设置&amp;查看断点</h4> <p>断点分类：</p> <ul><li><strong>常规断点</strong>（也叫普通断点）：程序运行到某个位置就会被阻塞</li> <li><strong>条件断点</strong>：指定条件被满足时程序才会在断点处阻塞</li></ul> <hr> <p><strong>一、在当前文件设置普通断点</strong></p> <div class="language- extra-class"><pre class="language-text"><code># 打断点到某一行
+(gdb) b 行号
+
+# 打断点到函数体的第一行
+(gdb) b 函数名
+</code></pre></div><p><strong>二、在其他文件（非当前文件）中设置普通断点</strong></p> <div class="language- extra-class"><pre class="language-text"><code>(gdb) b 文件名:行号
+
+(gdb) b 文件名:函数名
+</code></pre></div><p><strong>三、条件断点</strong></p> <div class="language- extra-class"><pre class="language-text"><code># 满足条件时，程序才会阻塞在断点的位置上。循环中常用
+(gdb) b 行数 if 变量名==某个值
+</code></pre></div><hr> <p><strong>示例</strong></p> <p><a href="https://gitee.com/egu0/gcc_n_makefile/tree/aeb9b281ef9edd1f322d23061102dc5a0d28aa7c/gdb/02_list" target="_blank" rel="noopener noreferrer">目录结构<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p><img src="/ops/assets/img/image-20240222223823372.4f239ef2.png" alt="image-20240222223823372"></p> <p>打完断点后使用 <code>info break</code> （也可简写为 <code>i b</code>）<strong>查看断点信息</strong>，各列属性为：</p> <ul><li><code>Num</code> 表示断点号。<strong>重要</strong></li> <li><code>Type</code> 表示断点类型，普通断点还是条件断点</li> <li><code>Enb</code> 表示是否生效</li> <li><code>Address</code> 断点地址</li> <li><code>What</code> 断点所在位置</li></ul> <h4 id="删除断点"><a href="#删除断点" class="header-anchor">#</a> 删除断点</h4> <p><code>delete</code>、<code>del</code>、<code>d</code></p> <div class="language- extra-class"><pre class="language-text"><code># 删除某个断点
+(gdb) d 断点编号
+#比如 (gdb) d 1
+
+# 删除断点编号在 [X,Y] 区间的断点
+(gdb) d X-Y
+#比如 (gdb) d 1-3
+</code></pre></div><h4 id="修改断点状态"><a href="#修改断点状态" class="header-anchor">#</a> 修改断点状态</h4> <p><strong>禁用断点</strong>，适用于想保留断点信息时</p> <p>命令为：<code>disable</code>、<code>dis</code></p> <div class="language- extra-class"><pre class="language-text"><code># 禁用某个断点
+(gdb) dis 断点编号
+
+# 禁用断点编号在 [X,Y] 区间的断点
+(gdb) dis X-Y
+</code></pre></div><p><strong>启用断点</strong>，命令为 <code>enable</code>、<code>ena</code></p> <div class="language- extra-class"><pre class="language-text"><code># 启用某个断点
+(gdb) ena 断点编号
+
+# 启用断点编号在 [X,Y] 区间的断点
+(gdb) ena X-Y
+</code></pre></div><h3 id="调试命令"><a href="#调试命令" class="header-anchor">#</a> 调试命令</h3> <h4 id="开始运行"><a href="#开始运行" class="header-anchor">#</a> 开始运行</h4> <p>开始调试</p> <div class="language- extra-class"><pre class="language-text"><code># 方法1：执行 main 中第一行后停下来。输入命令 c/continue 继续执行
+(gdb) start
+
+# 方法2：r/run，执行 main，遇断点则停下，否知执行完毕
+(gdb) run
+</code></pre></div><h4 id="继续运行"><a href="#继续运行" class="header-anchor">#</a> 继续运行</h4> <p>假设程序被断点阻塞了，如果想让它继续执行，则可以使用 <code>continue</code> 命令。</p> <p>命令：<code>continue</code>、<code>c</code>，会使程序继续运行，直到遇到下一个有效的断点</p> <div class="language- extra-class"><pre class="language-text"><code>(gdb) c
+</code></pre></div><h4 id="手动打印信息"><a href="#手动打印信息" class="header-anchor">#</a> 手动打印信息</h4> <p>当程序阻塞在某个断点时，可以通过一些命令打印变量的名字或者变量的类型，并且还可以跟踪打印某个变量的值。</p> <p><strong>一、打印变量值</strong></p> <p>命令：<code>print</code> 或 <code>p</code></p> <div class="language- extra-class"><pre class="language-text"><code>(gdb) p 变量名
+</code></pre></div><p>如果变量是整数，则可以指定输出格式：</p> <table><thead><tr><th>格式化字符</th> <th>说明</th></tr></thead> <tbody><tr><td><code>x</code></td> <td>以十六进制的形式打印出整数</td></tr> <tr><td><code>d</code></td> <td>以有符号、十进制的形式打印出整数</td></tr> <tr><td><code>u</code></td> <td>以无符号、十进制的形式打印出整数</td></tr> <tr><td><code>o</code></td> <td>以八进制的形式打印出整数</td></tr> <tr><td><code>t</code></td> <td>以二进制的形式打印出整数</td></tr> <tr><td><code>f</code></td> <td>以浮点数的形式打印变量或表达式的值</td></tr> <tr><td><code>c</code></td> <td>以字符形式打印变量或表达式的值</td></tr></tbody></table> <div class="language- extra-class"><pre class="language-text"><code>(gdb) p i
+$3 = 3
+
+(gdb) p/d i
+$4 = 3
+
+(gdb) p/o i
+$5 = 03
+</code></pre></div><p><strong>二、打印变量类型</strong></p> <div class="language- extra-class"><pre class="language-text"><code>(gdb) ptype 变量名
+</code></pre></div><div class="language- extra-class"><pre class="language-text"><code>(gdb) ptype i
+type = int
+
+(gdb) ptype arr[0]
+type = int
+</code></pre></div><h4 id="自动打印信息"><a href="#自动打印信息" class="header-anchor">#</a> 自动打印信息</h4> <p><strong>一、设置变量名自动显示</strong></p> <p>和 <code>print</code> 命令一样，<code>display</code> 命令也可以用于调试阶段查看某个变量或表达式的值，它们的区别是：使用 display 命令查看变量或表达式的值，每当程序被断点阻塞执行时（例如单步执行），gdb 都会自动帮我们打印出来，而 print 命令则不会。</p> <p>因此，当我们想频繁查看某个变量或表达式的值或者观察它的变化情况时，使用 display 命令可以一劳永逸。</p> <p>另外，display 命令没有缩写形式</p> <p>常见的两种语法格式：</p> <div class="language- extra-class"><pre class="language-text"><code># 在变量的有效范围内，自动打印变量的值（设置一次，之后会自动打印）
+(gdb) display 变量名
+
+(gdb) display/格式化字符 变量名
+</code></pre></div><p><strong>二、查看自动显示列表</strong></p> <p>通过 <code>info display</code> （或简写 <code>i display</code>）可以查看被 display 命令关注的变量或表达式</p> <div class="language- extra-class"><pre class="language-text"><code>(gdb) info display
+Auto-display expressions now in effect:
+Num Enb Expression
+1:   y  arr
+2:   y  arr[i]
+</code></pre></div><p>三列说明：</p> <ul><li><code>Num</code> 变量或表达式的编号，GDB 调试器为每个变量或表达式都分配有唯一的编号</li> <li><code>Enb</code> 表示当前变量（表达式）是处于激活状态还是禁用状态</li> <li><code>Expression</code> 被自动打印值的变量或表达式的名字</li></ul> <p><strong>三、修改自动显示状态</strong></p> <p>对于不需要再打印的变量或表达式，可以将其<strong>删除或禁用</strong></p> <div class="language- extra-class"><pre class="language-text"><code># 方式一、通过【undisplay + 编号或编号范围】删除
+(gdb) undisplay num1 num2 ...
+(gdb) undisplay X-Y
+
+# 方式二、通过【delete display + 编号或编号范围】删除
+(gdb) delete display num1 num2 ...
+(gdb) delete display X-Y
+</code></pre></div><div class="language- extra-class"><pre class="language-text"><code>通过【disable display + 编号或编号范围】禁用
+(gdb) disable display num1 num2 ...
+(gdb) disable display X-Y
+</code></pre></div><div class="language- extra-class"><pre class="language-text"><code>通过【enable display + 编号或编号范围】启用
+(gdb) enable display num1 num2 ...
+(gdb) enable display X-Y
+</code></pre></div><h3 id="单步调试"><a href="#单步调试" class="header-anchor">#</a> 单步调试</h3> <p>当程序阻塞到某个断点上后，可以通过以下命令对程序进行单步调试。</p> <ul><li><code>next</code> 可缩写为<code>n</code>，表示执行一步，如果当前行是一个函数调用则<strong>不会进入函数内部</strong></li> <li><code>step</code> 可缩写为<code>s</code>，表示执行一步，如果当前行是一个函数调用则<strong>会进入函数内部</strong></li> <li><code>finish</code> 功能是跳出所在函数体，如果想要跳出函数体必须保证当前函数体内<strong>没有有效断点</strong>，否则无法跳出</li> <li><code>util</code> 功能是跳出某个循环体。若要跳出循环体需要满足两个条件：
+<ul><li>要跳出的循环体无有效断点</li> <li>执行命令时所在的行必须是循环头部，即 <code>for(;;)</code></li></ul></li></ul> <h3 id="设置变量值"><a href="#设置变量值" class="header-anchor">#</a> 设置变量值</h3> <p>通过上边的学习，我们已经学会了如何查看执行状态下某个变量或表达式的值，有的时候通过程序运行让变量等于某个值比较困难，这种情况下可以直接给某个变量进行值的设置。</p> <p>比如想快速跳出 for 循环时，可以采用修改循环变量值的方式进行。</p> <p>语法：</p> <div class="language- extra-class"><pre class="language-text"><code>(gdb) set var 变量名=值
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/ops/assets/js/app.d9b500de.js" defer></script><script src="/ops/assets/js/2.592a6313.js" defer></script><script src="/ops/assets/js/1.47e12c88.js" defer></script><script src="/ops/assets/js/22.f648a94c.js" defer></script>
+  </body>
+</html>

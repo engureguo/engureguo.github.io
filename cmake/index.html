@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>cmake tutorials note | Egu0</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    
+    <meta name="description" content="欢迎您，这是一个公开的个人内容网站！">
+    
+    <link rel="preload" href="/ops/assets/css/0.styles.35aed208.css" as="style"><link rel="preload" href="/ops/assets/js/app.d9b500de.js" as="script"><link rel="preload" href="/ops/assets/js/2.592a6313.js" as="script"><link rel="preload" href="/ops/assets/js/1.47e12c88.js" as="script"><link rel="preload" href="/ops/assets/js/24.848e5af5.js" as="script"><link rel="prefetch" href="/ops/assets/js/10.fde088a2.js"><link rel="prefetch" href="/ops/assets/js/11.c62b6b34.js"><link rel="prefetch" href="/ops/assets/js/12.27d4f152.js"><link rel="prefetch" href="/ops/assets/js/13.419d7748.js"><link rel="prefetch" href="/ops/assets/js/14.eb7a3d07.js"><link rel="prefetch" href="/ops/assets/js/15.114dfd5c.js"><link rel="prefetch" href="/ops/assets/js/16.85253907.js"><link rel="prefetch" href="/ops/assets/js/17.c2838453.js"><link rel="prefetch" href="/ops/assets/js/18.3256f17f.js"><link rel="prefetch" href="/ops/assets/js/19.d8afd0ae.js"><link rel="prefetch" href="/ops/assets/js/20.0d880388.js"><link rel="prefetch" href="/ops/assets/js/21.33b300c9.js"><link rel="prefetch" href="/ops/assets/js/22.f648a94c.js"><link rel="prefetch" href="/ops/assets/js/23.46909532.js"><link rel="prefetch" href="/ops/assets/js/25.47a9c99a.js"><link rel="prefetch" href="/ops/assets/js/26.ddfe8844.js"><link rel="prefetch" href="/ops/assets/js/27.cf01e403.js"><link rel="prefetch" href="/ops/assets/js/28.7876342e.js"><link rel="prefetch" href="/ops/assets/js/3.af33e5d6.js"><link rel="prefetch" href="/ops/assets/js/4.0a92875f.js"><link rel="prefetch" href="/ops/assets/js/5.3b9be48d.js"><link rel="prefetch" href="/ops/assets/js/6.7b96ebf4.js"><link rel="prefetch" href="/ops/assets/js/7.7e58b9c4.js"><link rel="prefetch" href="/ops/assets/js/vendors~docsearch.2493936b.js">
+    <link rel="stylesheet" href="/ops/assets/css/0.styles.35aed208.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/ops/" class="home-link router-link-active"><img src="/ops/images/logo.png" alt="Egu0" class="logo"> <span class="site-name can-hide">Egu0</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="🐧 Linux" class="dropdown-title"><span class="title">🐧 Linux</span> <span class="arrow down"></span></button> <button type="button" aria-label="🐧 Linux" class="mobile-dropdown-title"><span class="title">🐧 Linux</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ops/cmake/" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  CMake 入门
+</a></li><li class="dropdown-item"><!----> <a href="/ops/linux-gcc/" class="nav-link">
+  GCC 入门
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="🔧 工具" class="dropdown-title"><span class="title">🔧 工具</span> <span class="arrow down"></span></button> <button type="button" aria-label="🔧 工具" class="mobile-dropdown-title"><span class="title">🔧 工具</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ops/tool-box/a-tool-box/" class="nav-link">
+  我的工具盒
+</a></li><li class="dropdown-item"><!----> <a href="/ops/tool-box/vuepress-using/" class="nav-link">
+  Vuepress v1 实践
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="🔗 外链" class="dropdown-title"><span class="title">🔗 外链</span> <span class="arrow down"></span></button> <button type="button" aria-label="🔗 外链" class="mobile-dropdown-title"><span class="title">🔗 外链</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://gitee.com/egu0" target="_self" class="nav-link external">
+  Gitee
+  <!----></a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="🐧 Linux" class="dropdown-title"><span class="title">🐧 Linux</span> <span class="arrow down"></span></button> <button type="button" aria-label="🐧 Linux" class="mobile-dropdown-title"><span class="title">🐧 Linux</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ops/cmake/" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  CMake 入门
+</a></li><li class="dropdown-item"><!----> <a href="/ops/linux-gcc/" class="nav-link">
+  GCC 入门
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="🔧 工具" class="dropdown-title"><span class="title">🔧 工具</span> <span class="arrow down"></span></button> <button type="button" aria-label="🔧 工具" class="mobile-dropdown-title"><span class="title">🔧 工具</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ops/tool-box/a-tool-box/" class="nav-link">
+  我的工具盒
+</a></li><li class="dropdown-item"><!----> <a href="/ops/tool-box/vuepress-using/" class="nav-link">
+  Vuepress v1 实践
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="🔗 外链" class="dropdown-title"><span class="title">🔗 外链</span> <span class="arrow down"></span></button> <button type="button" aria-label="🔗 外链" class="mobile-dropdown-title"><span class="title">🔗 外链</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://gitee.com/egu0" target="_self" class="nav-link external">
+  Gitee
+  <!----></a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>cmake tutorials note</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/ops/cmake/#快速上手" class="sidebar-link">快速上手</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/ops/cmake/#cmake-安装与基本使用" class="sidebar-link">cmake 安装与基本使用</a></li><li class="sidebar-sub-header"><a href="/ops/cmake/#cmake-添加变量" class="sidebar-link">cmake - 添加变量</a></li><li class="sidebar-sub-header"><a href="/ops/cmake/#cmake-搜索文件" class="sidebar-link">cmake - 搜索文件</a></li><li class="sidebar-sub-header"><a href="/ops/cmake/#指定头文件目录" class="sidebar-link">指定头文件目录</a></li></ul></li><li><a href="/ops/cmake/#基于-cmake-构建库和使用库" class="sidebar-link">基于 cmake 构建库和使用库</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/ops/cmake/#创建动态库" class="sidebar-link">创建动态库</a></li><li class="sidebar-sub-header"><a href="/ops/cmake/#创建静态库" class="sidebar-link">创建静态库</a></li><li class="sidebar-sub-header"><a href="/ops/cmake/#链接静态库" class="sidebar-link">链接静态库</a></li><li class="sidebar-sub-header"><a href="/ops/cmake/#链接动态库" class="sidebar-link">链接动态库</a></li><li class="sidebar-sub-header"><a href="/ops/cmake/#补充-库的加载工作" class="sidebar-link">补充：库的加载工作</a></li></ul></li><li><a href="/ops/cmake/#日志" class="sidebar-link">日志</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/ops/cmake/#变量和列表" class="sidebar-link">变量和列表</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/ops/cmake/#字符串拼接" class="sidebar-link">字符串拼接</a></li><li class="sidebar-sub-header"><a href="/ops/cmake/#list-操作" class="sidebar-link">List 操作</a></li></ul></li><li><a href="/ops/cmake/#宏定义" class="sidebar-link">宏定义</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/ops/cmake/#cmake-嵌套" class="sidebar-link">CMake 嵌套</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/ops/cmake/#编写根-cmakelists-txt" class="sidebar-link">编写根 CMakeLists.txt</a></li><li class="sidebar-sub-header"><a href="/ops/cmake/#calc-和-sort-两个模块的-cmakelists-txt" class="sidebar-link">calc 和 sort 两个模块的 CMakeLists.txt</a></li><li class="sidebar-sub-header"><a href="/ops/cmake/#两个测试目录里的-cmakelists-txt" class="sidebar-link">两个测试目录里的 CMakeLists.txt</a></li><li class="sidebar-sub-header"><a href="/ops/cmake/#执行构建" class="sidebar-link">执行构建</a></li><li class="sidebar-sub-header"><a href="/ops/cmake/#在-sort-库中链接-calc-库" class="sidebar-link">在 sort 库中链接 calc 库</a></li><li class="sidebar-sub-header"><a href="/ops/cmake/#在静态库中链接动态库" class="sidebar-link">在静态库中链接动态库</a></li></ul></li><li><a href="/ops/cmake/#项目" class="sidebar-link">项目</a><ul class="sidebar-sub-headers"></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="cmake-tutorials-note"><a href="#cmake-tutorials-note" class="header-anchor">#</a> cmake tutorials note</h1> <p><a href="https://www.bilibili.com/video/BV14s4y1g7Zj" target="_blank" rel="noopener noreferrer">dabing cmake<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>, <a href="https://subingwen.cn/cmake/CMake-primer/" target="_blank" rel="noopener noreferrer">doc-1<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>, <a href="https://subingwen.cn/cmake/CMake-advanced" target="_blank" rel="noopener noreferrer">doc-2<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <h2 id="快速上手"><a href="#快速上手" class="header-anchor">#</a> 快速上手</h2> <p><strong>gcc 步骤</strong>:</p> <ol><li>预处理</li> <li>编译（编译器）</li> <li>汇编（汇编器）</li> <li>链接（链接器）</li></ol> <p>如果有很多文件（比如超过 10 个）需要在一起编译，那么使用 gcc 命令似乎很棘手，通常我们会使用 makefile 或 cmake 工具辅助编译。</p> <p>步骤：</p> <ol><li>create file <code>CmakeLists.txt</code></li> <li>execute cmd <code>cmake &lt;path&gt;</code> to generate <code>Makefile</code>（2nd path can be relative path of <code>CMakeLists.txt</code>）</li> <li>use cmd <code>make</code> to obtain executable file</li></ol> <h3 id="cmake-安装与基本使用"><a href="#cmake-安装与基本使用" class="header-anchor">#</a> cmake 安装与基本使用</h3> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> cmake
+
+cmake <span class="token parameter variable">--version</span>
+</code></pre></div><div class="language-sh extra-class"><pre class="language-sh"><code><span class="token comment"># centos</span>
+<span class="token comment"># https://stackoverflow.com/questions/55345373/how-to-install-gcc-g-8-on-centos#comment136335547_66016318</span>
+<span class="token function">sudo</span> dnf groupinstall <span class="token string">&quot;Development Tools&quot;</span>
+</code></pre></div><p>create file <code>CMakeLists.txt</code> and fill with:</p> <div class="language-python extra-class"><pre class="language-python"><code><span class="token comment"># 定义最小的 cmake 版本，可选</span>
+cmake_minimum_required<span class="token punctuation">(</span>VERSION <span class="token number">3.15</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 定义项目名</span>
+project<span class="token punctuation">(</span>helloworld<span class="token punctuation">)</span>
+
+<span class="token comment"># 指定最终可执行文件以及源文件</span>
+<span class="token comment"># 参数1：可执行文件名子</span>
+<span class="token comment"># 参数2：原文件列表，如果有多个可使用 space 或 ; 间隔</span>
+add_executable<span class="token punctuation">(</span>app main<span class="token punctuation">.</span>cpp add<span class="token punctuation">.</span>cpp sub<span class="token punctuation">.</span>cpp mul<span class="token punctuation">.</span>cpp div<span class="token punctuation">.</span>cpp<span class="token punctuation">)</span>
+<span class="token comment"># 注意：指定源文件时无需指定 .h 文件</span>
+</code></pre></div><p>利用 cmake 进行编译</p> <div class="language-txt extra-class"><pre class="language-txt"><code>$ cmake .
+.
+├── add.cpp
+├── CMakeCache.txt
+├── CMakeFiles
+├── cmake_install.cmake
+├── CMakeLists.txt
+├── div.cpp
+├── head.h
+├── main.cpp
+├── Makefile
+├── mul.cpp
+└── sub.cpp
+</code></pre></div><hr> <p><strong>推荐</strong>另一种方式：将所有 cmake 和 make 中间产物统一放在一个目录下</p> <blockquote><p>尝试这种方式之间需要删掉上边一步产生的所有中间产物</p> <p><code>rm -rf CMakeFiles cmake_install.cmake CMakeCache.txt Makefile</code></p></blockquote> <ol><li>创建 <code>build</code> 目录并 <code>cd</code> 进入它</li> <li>执行命令 <code>cmake ..</code></li> <li>然后所有的编译中间产物都出现在了 build 目录中</li></ol> <div class="language-txt extra-class"><pre class="language-txt"><code>.
+├── add.cpp
+├── build
+├── CMakeLists.txt
+├── div.cpp
+├── head.h
+├── main.cpp
+├── mul.cpp
+└── sub.cpp
+</code></pre></div><ol start="4"><li>然后执行 <code>make</code> 命令，然后可以得到 <code>app</code> 可执行文件</li></ol> <h3 id="cmake-添加变量"><a href="#cmake-添加变量" class="header-anchor">#</a> cmake - 添加变量</h3> <div class="language-python extra-class"><pre class="language-python"><code>cmake_minimum_required<span class="token punctuation">(</span>VERSION <span class="token number">3.15</span><span class="token punctuation">)</span>
+project<span class="token punctuation">(</span>helloworld<span class="token punctuation">)</span>
+
+<span class="token comment"># 1.指定标准版本(auto keyword is supported in std11+)</span>
+<span class="token builtin">set</span><span class="token punctuation">(</span>CMAKE_CXX_STANDARD <span class="token number">11</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 2. 定义变量</span>
+<span class="token builtin">set</span><span class="token punctuation">(</span>SRC_LIST main<span class="token punctuation">.</span>cpp add<span class="token punctuation">.</span>cpp sub<span class="token punctuation">.</span>cpp mul<span class="token punctuation">.</span>cpp div<span class="token punctuation">.</span>cpp<span class="token punctuation">)</span>
+<span class="token comment"># same as</span>
+<span class="token comment"># set(SRC_LIST main.cpp;add.cpp;sub.cpp;mul.cpp;div.cpp)</span>
+add_executable<span class="token punctuation">(</span>app $<span class="token punctuation">{</span>SRC_LIST<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><p>第三种方式：通过为 cmake 命令添加参数添加</p> <div class="language-sh extra-class"><pre class="language-sh"><code>cmake <span class="token operator">&lt;</span>path<span class="token operator">&gt;</span> <span class="token parameter variable">-DCMAKE_CXX_STANDARD</span><span class="token operator">=</span><span class="token number">11</span>
+</code></pre></div><hr> <p>另一个宏 <code>EXECUTABLE_OUTPUT_PATH</code> 用来指定生成的可执行文件的路径。如果路径不存在会自动被创建</p> <div class="language-python extra-class"><pre class="language-python"><code><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+
+SET<span class="token punctuation">(</span>HOME <span class="token operator">/</span>home<span class="token operator">/</span>eugene<span class="token operator">/</span>tools<span class="token punctuation">)</span>
+<span class="token builtin">set</span><span class="token punctuation">(</span>EXECUTABLE_OUTPUT_PATH $<span class="token punctuation">{</span>HOME<span class="token punctuation">}</span><span class="token operator">/</span><span class="token builtin">bin</span><span class="token punctuation">)</span>
+</code></pre></div><hr> <div class="language-python extra-class"><pre class="language-python"><code>cmake_minimum_required<span class="token punctuation">(</span>VERSION <span class="token number">3.15</span><span class="token punctuation">)</span>
+project<span class="token punctuation">(</span>helloworld<span class="token punctuation">)</span>
+
+<span class="token comment"># 定义标准库版本</span>
+<span class="token builtin">set</span><span class="token punctuation">(</span>CMAKE_CXX_STANDARD <span class="token number">11</span><span class="token punctuation">)</span>
+
+<span class="token builtin">set</span><span class="token punctuation">(</span>SRC_LIST main<span class="token punctuation">.</span>cpp add<span class="token punctuation">.</span>cpp sub<span class="token punctuation">.</span>cpp mul<span class="token punctuation">.</span>cpp div<span class="token punctuation">.</span>cpp<span class="token punctuation">)</span>
+<span class="token comment"># set(SRC_LIST main.cpp;add.cpp;sub.cpp;mul.cpp;div.cpp)</span>
+add_executable<span class="token punctuation">(</span>app $<span class="token punctuation">{</span>SRC_LIST<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token builtin">set</span><span class="token punctuation">(</span>HOME <span class="token operator">/</span>home<span class="token operator">/</span>eugene<span class="token punctuation">)</span>
+<span class="token builtin">set</span><span class="token punctuation">(</span>EXECUTABLE_OUTPUT_PATH $<span class="token punctuation">{</span>HOME<span class="token punctuation">}</span><span class="token operator">/</span>aa<span class="token operator">/</span>bb<span class="token operator">/</span>app<span class="token punctuation">)</span>
+</code></pre></div><div class="language-txt extra-class"><pre class="language-txt"><code>➜  build cmake .. &amp;&amp; make
+-- The C compiler identification is GNU 11.4.0
+-- The CXX compiler identification is GNU 11.4.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/eugene/Documents/cmake_workspace/01proj_helloworld/build
+[ 16%] Building CXX object CMakeFiles/app.dir/main.cpp.o
+[ 33%] Building CXX object CMakeFiles/app.dir/add.cpp.o
+[ 50%] Building CXX object CMakeFiles/app.dir/sub.cpp.o
+[ 66%] Building CXX object CMakeFiles/app.dir/mul.cpp.o
+[ 83%] Building CXX object CMakeFiles/app.dir/div.cpp.o
+[100%] Linking CXX executable /home/eugene/aa/bb/app/app
+[100%] Built target app
+➜  build cmake .. &amp;&amp; make
+-- The C compiler identification is GNU 11.4.0
+-- The CXX compiler identification is GNU 11.4.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/eugene/Documents/cmake_workspace/01proj_helloworld/build
+[ 16%] Building CXX object CMakeFiles/app.dir/main.cpp.o
+[ 33%] Building CXX object CMakeFiles/app.dir/add.cpp.o
+[ 50%] Building CXX object CMakeFiles/app.dir/sub.cpp.o
+[ 66%] Building CXX object CMakeFiles/app.dir/mul.cpp.o
+[ 83%] Building CXX object CMakeFiles/app.dir/div.cpp.o
+[100%] Linking CXX executable /home/eugene/aa/bb/app/app
+[100%] Built target app
+➜  build /home/eugene/aa/bb/app/app
+a = 20, b = 12
+a + b = 32
+a - b = 8
+a * b = 240
+a / b = 1.666667
+➜  build
+➜  build
+</code></pre></div><p>动手尝试：change CMAKE_CXX_STANDARD value from 11 to 98, and see what'll happen.</p> <h3 id="cmake-搜索文件"><a href="#cmake-搜索文件" class="header-anchor">#</a> cmake - 搜索文件</h3> <p>上一节中我们使用 set 命令指定了所有的源文件，但当文件很多时这种方法太繁琐，我们可以使用搜索命令自动扫描某个目录下的文件</p> <p>方式一：<code>aux_source_directory</code> 命令</p> <div class="language-python extra-class"><pre class="language-python"><code>cmake_minimum_required<span class="token punctuation">(</span>VERSION <span class="token number">3.15</span><span class="token punctuation">)</span>
+project<span class="token punctuation">(</span>helloworld<span class="token punctuation">)</span>
+
+<span class="token builtin">set</span><span class="token punctuation">(</span>CMAKE_CXX_STANDARD <span class="token number">11</span><span class="token punctuation">)</span>
+
+<span class="token comment"># set(SRC_LIST main.cpp add.cpp sub.cpp mul.cpp div.cpp)</span>
+
+<span class="token comment"># 搜索指定目录下的所有文件并将其赋值给一个变量</span>
+aux_source_directory<span class="token punctuation">(</span>$<span class="token punctuation">{</span>PROJECT_SOURCE_DIR<span class="token punctuation">}</span> SRC_LIST<span class="token punctuation">)</span>
+
+<span class="token comment"># 使用变量</span>
+add_executable<span class="token punctuation">(</span>app $<span class="token punctuation">{</span>SRC_LIST<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><blockquote><p><code>PROJECT_SOURCE_DIR</code> 这个变量所指的目录是我们使用 cmake 命令时传递的第一个参数所指的目录</p></blockquote> <p>方式二：<code>file</code> 命令，功能比较强大</p> <div class="language-python extra-class"><pre class="language-python"><code>cmake_minimum_required<span class="token punctuation">(</span>VERSION <span class="token number">3.15</span><span class="token punctuation">)</span>
+project<span class="token punctuation">(</span>helloworld<span class="token punctuation">)</span>
+
+<span class="token builtin">set</span><span class="token punctuation">(</span>CMAKE_CXX_STANDARD <span class="token number">11</span><span class="token punctuation">)</span>
+
+<span class="token comment"># set(SRC_LIST main.cpp add.cpp sub.cpp mul.cpp div.cpp)</span>
+
+<span class="token comment"># 根据 ${PROJECT_SOURCE_DIR}/*.cpp 规则搜索所有文件(无递归)并将他们保存在变量 SRC_LIST 中</span>
+<span class="token builtin">file</span><span class="token punctuation">(</span>GLOB SRC_LIST $<span class="token punctuation">{</span>PROJECT_SOURCE_DIR<span class="token punctuation">}</span><span class="token operator">/</span><span class="token operator">*</span><span class="token punctuation">.</span>cpp<span class="token punctuation">)</span>
+
+add_executable<span class="token punctuation">(</span>app $<span class="token punctuation">{</span>SRC_LIST<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><p><a href="https://cmake.org/cmake/help/latest/command/file.html" target="_blank" rel="noopener noreferrer">file — CMake 3.29.0-rc1 Documentation<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <h3 id="指定头文件目录"><a href="#指定头文件目录" class="header-anchor">#</a> 指定头文件目录</h3> <p>创建两个目录：<code>include</code> 用来存放所有头文件；<code>src</code> 用来存放所有源文件</p> <p>结构为</p> <div class="language-txt extra-class"><pre class="language-txt"><code>➜  01proj_helloworld tree -L 2
+.
+├── build
+│   ├── app
+│   ├── CMakeCache.txt
+│   ├── CMakeFiles
+│   ├── cmake_install.cmake
+│   └── Makefile
+├── CMakeLists.txt
+├── include
+│   └── head.h
+└── src
+    ├── add.cpp
+    ├── div.cpp
+    ├── main.cpp
+    ├── mul.cpp
+    └── sub.cpp
+</code></pre></div><p>编写 <code>CMakeLists.txt</code></p> <div class="language-python extra-class"><pre class="language-python"><code>cmake_minimum_required<span class="token punctuation">(</span>VERSION <span class="token number">3.15</span><span class="token punctuation">)</span>
+project<span class="token punctuation">(</span>helloworld<span class="token punctuation">)</span>
+
+<span class="token builtin">set</span><span class="token punctuation">(</span>CMAKE_CXX_STANDARD <span class="token number">11</span><span class="token punctuation">)</span>
+
+<span class="token comment"># file(GLOB SRC_LIST ${PROJECT_SOURCE_DIR}/*.cpp)</span>
+<span class="token builtin">file</span><span class="token punctuation">(</span>GLOB SRC_LIST $<span class="token punctuation">{</span>PROJECT_SOURCE_DIR<span class="token punctuation">}</span><span class="token operator">/</span>src<span class="token operator">/</span><span class="token operator">*</span><span class="token punctuation">.</span>cpp<span class="token punctuation">)</span>
+
+add_executable<span class="token punctuation">(</span>app $<span class="token punctuation">{</span>SRC_LIST<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><p>在 build 目录中进行编译，发现出错了</p> <div class="language-txt extra-class"><pre class="language-txt"><code>➜  build cmake .. &amp;&amp; make
+-- The C compiler identification is GNU 11.4.0
+-- The CXX compiler identification is GNU 11.4.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/eugene/Documents/cmake_workspace/01proj_helloworld/build
+[ 16%] Building CXX object CMakeFiles/app.dir/src/add.cpp.o
+/home/eugene/Documents/cmake_workspace/01proj_helloworld/src/add.cpp:2:10: fatal error: head.h: No such file or directory
+    2 | #include &quot;head.h&quot;
+      |          ^~~~~~~~
+compilation terminated.
+make[2]: *** [CMakeFiles/app.dir/build.make:76: CMakeFiles/app.dir/src/add.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:83: CMakeFiles/app.dir/all] Error 2
+make: *** [Makefile:91: all] Error 2
+➜  build
+</code></pre></div><p>原因：<code>add.cpp</code> 找不到头文件</p> <p>解决方法</p> <ol><li>修改 <code>add.cpp</code> 的 <code>#include &quot;head.h&quot;</code>为 <code>#include &quot;../include/head.h&quot;</code>: 如果文件太多，那么修改起来很麻烦</li> <li>（推荐） 指定 header 目录，使用命令： <code>include_directories(${PROJECT_SOURCE_DIR}/include)</code></li></ol> <p>最终的 <code>CMakeLists.txt</code></p> <div class="language-python extra-class"><pre class="language-python"><code>cmake_minimum_required<span class="token punctuation">(</span>VERSION <span class="token number">3.15</span><span class="token punctuation">)</span>
+project<span class="token punctuation">(</span>helloworld<span class="token punctuation">)</span>
+
+<span class="token builtin">set</span><span class="token punctuation">(</span>CMAKE_CXX_STANDARD <span class="token number">11</span><span class="token punctuation">)</span>
+
+<span class="token builtin">file</span><span class="token punctuation">(</span>GLOB SRC_LIST $<span class="token punctuation">{</span>PROJECT_SOURCE_DIR<span class="token punctuation">}</span><span class="token operator">/</span>src<span class="token operator">/</span><span class="token operator">*</span><span class="token punctuation">.</span>cpp<span class="token punctuation">)</span>
+
+<span class="token comment"># 指定头文件所在目录</span>
+include_directories<span class="token punctuation">(</span>$<span class="token punctuation">{</span>PROJECT_SOURCE_DIR<span class="token punctuation">}</span><span class="token operator">/</span>include<span class="token punctuation">)</span>
+
+add_executable<span class="token punctuation">(</span>app $<span class="token punctuation">{</span>SRC_LIST<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><h2 id="基于-cmake-构建库和使用库"><a href="#基于-cmake-构建库和使用库" class="header-anchor">#</a> 基于 cmake 构建库和使用库</h2> <p>项目：<code>02project_lib</code></p> <p>创建项目有哪些目的？</p> <ol><li>构建可执行文件</li> <li>组合源文件到一个二进制文件，也称为库，有动态库和静态库之分</li></ol> <h3 id="创建动态库"><a href="#创建动态库" class="header-anchor">#</a> 创建动态库</h3> <div class="language-python extra-class"><pre class="language-python"><code>cmake_minimum_required<span class="token punctuation">(</span>VERSION <span class="token number">3.15</span><span class="token punctuation">)</span>
+project<span class="token punctuation">(</span>mylib<span class="token punctuation">)</span>
+
+<span class="token builtin">set</span><span class="token punctuation">(</span>CMAKE_CXX_STANDARD <span class="token number">11</span><span class="token punctuation">)</span>
+
+<span class="token builtin">file</span><span class="token punctuation">(</span>GLOB SRC_LIST $<span class="token punctuation">{</span>PROJECT_SOURCE_DIR<span class="token punctuation">}</span><span class="token operator">/</span>src<span class="token operator">/</span><span class="token operator">*</span><span class="token punctuation">.</span>cpp<span class="token punctuation">)</span>
+
+include_directories<span class="token punctuation">(</span>$<span class="token punctuation">{</span>PROJECT_SOURCE_DIR<span class="token punctuation">}</span><span class="token operator">/</span>include<span class="token punctuation">)</span>
+
+<span class="token comment"># add_executable(app ${SRC_LIST})</span>
+
+<span class="token comment"># 使用 add_library 命令</span>
+add_library<span class="token punctuation">(</span>mycalc SHARED $<span class="token punctuation">{</span>SRC_LIST<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><div class="language-txt extra-class"><pre class="language-txt"><code>$ tree -L 2
+.
+├── build
+│   ├── CMakeCache.txt
+│   ├── CMakeFiles
+│   ├── cmake_install.cmake
+│   ├── libmycalc.so          # 动态库
+│   └── Makefile
+├── CMakeLists.txt
+├── include
+│   └── head.h
+└── src
+    ├── add.cpp
+    ├── div.cpp
+    ├── mul.cpp
+    └── sub.cpp
+</code></pre></div><blockquote><p>dynamic library have executable permission while static library do not have!</p></blockquote> <h3 id="创建静态库"><a href="#创建静态库" class="header-anchor">#</a> 创建静态库</h3> <p>利用上一节代码，只需改动一个关键字</p> <p><code>CMakeLists.txt</code>:</p> <div class="language-python extra-class"><pre class="language-python"><code><span class="token comment">#add_library(mycalc SHARED ${SRC_LIST})</span>
+add_library<span class="token punctuation">(</span>mycalc STATIC $<span class="token punctuation">{</span>SRC_LIST<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><div class="language-txt extra-class"><pre class="language-txt"><code>.
+├── build
+│   ├── CMakeCache.txt
+│   ├── CMakeFiles
+│   ├── cmake_install.cmake
+│   ├── libmycalc.a         # 静态库
+│   └── Makefile
+├── CMakeLists.txt
+├── include
+│   └── head.h
+└── src
+    ├── add.cpp
+    ├── div.cpp
+    ├── mul.cpp
+    └── sub.cpp
+</code></pre></div><hr> <p>可以使用宏 <code>LIBRARY_OUTPUT_PATH</code> 指定动态库或静态库的输出目录</p> <div class="language-python extra-class"><pre class="language-python"><code>cmake_minimum_required<span class="token punctuation">(</span>VERSION <span class="token number">3.15</span><span class="token punctuation">)</span>
+project<span class="token punctuation">(</span>mylib<span class="token punctuation">)</span>
+
+<span class="token builtin">set</span><span class="token punctuation">(</span>CMAKE_CXX_STANDARD <span class="token number">11</span><span class="token punctuation">)</span>
+
+<span class="token builtin">file</span><span class="token punctuation">(</span>GLOB SRC_LIST $<span class="token punctuation">{</span>PROJECT_SOURCE_DIR<span class="token punctuation">}</span><span class="token operator">/</span>src<span class="token operator">/</span><span class="token operator">*</span><span class="token punctuation">.</span>cpp<span class="token punctuation">)</span>
+
+include_directories<span class="token punctuation">(</span>$<span class="token punctuation">{</span>PROJECT_SOURCE_DIR<span class="token punctuation">}</span><span class="token operator">/</span>include<span class="token punctuation">)</span>
+
+<span class="token comment"># set library output path</span>
+<span class="token builtin">set</span><span class="token punctuation">(</span>LIBRARY_OUTPUT_PATH $<span class="token punctuation">{</span>PROJECT_SOURCE_DIR<span class="token punctuation">}</span><span class="token operator">/</span>lib<span class="token punctuation">)</span>
+
+add_library<span class="token punctuation">(</span>mycalc STATIC $<span class="token punctuation">{</span>SRC_LIST<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><h3 id="链接静态库"><a href="#链接静态库" class="header-anchor">#</a> 链接静态库</h3> <p>准备目录（项目： <code>03proj_use_static_lib</code>）</p> <div class="language-txt extra-class"><pre class="language-txt"><code>.
+├── build
+├── CMakeLists.txt
+├── include
+│   └── head.h
+├── lib
+│   └── libmycalc.a
+└── src
+    └── main.cpp
+</code></pre></div><p>链接静态库</p> <div class="language-python extra-class"><pre class="language-python"><code>project<span class="token punctuation">(</span>helloworld<span class="token punctuation">)</span>
+<span class="token builtin">set</span><span class="token punctuation">(</span>CMAKE_CXX_STANDARD <span class="token number">11</span><span class="token punctuation">)</span>
+
+<span class="token builtin">file</span><span class="token punctuation">(</span>GLOB SRC_LIST $<span class="token punctuation">{</span>PROJECT_SOURCE_DIR<span class="token punctuation">}</span><span class="token operator">/</span>src<span class="token operator">/</span><span class="token operator">*</span><span class="token punctuation">.</span>cpp<span class="token punctuation">)</span>
+include_directories<span class="token punctuation">(</span>$<span class="token punctuation">{</span>PROJECT_SOURCE_DIR<span class="token punctuation">}</span><span class="token operator">/</span>include<span class="token punctuation">)</span>
+
+
+<span class="token comment"># way 1</span>
+<span class="token comment"># link_libraries(${PROJECT_SOURCE_DIR}/lib/libmycalc.a) # specify a staic lib path</span>
+<span class="token comment"># way 2</span>
+<span class="token comment"># link_libraries(libmycalc.a)</span>
+<span class="token comment"># link_directories(${PROJECT_SOURCE_DIR}/lib) # specify lib directories</span>
+<span class="token comment"># way 3</span>
+<span class="token comment"># link_libraries(mycalc)</span>
+<span class="token comment"># link_directories(${PROJECT_SOURCE_DIR}/lib) # specify lib directories</span>
+<span class="token comment"># way 4</span>
+<span class="token builtin">file</span><span class="token punctuation">(</span>GLOB LIB_LIST $<span class="token punctuation">{</span>PROJECT_SOURCE_DIR<span class="token punctuation">}</span><span class="token operator">/</span>lib<span class="token operator">/</span><span class="token operator">*</span><span class="token punctuation">.</span>a<span class="token punctuation">)</span>
+link_libraries<span class="token punctuation">(</span>$<span class="token punctuation">{</span>LIB_LIST<span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token comment"># support multiple staic lib paths</span>
+
+add_executable<span class="token punctuation">(</span>app $<span class="token punctuation">{</span>SRC_LIST<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><p>注意</p> <ul><li><code>link_libraries()</code> and <code>link_directories()</code> 命令支持多个参数</li> <li><code>link_libraries()</code> 只能链接静态库</li> <li><code>link_directories()</code> 指定要链接库所在的目录</li></ul> <h3 id="链接动态库"><a href="#链接动态库" class="header-anchor">#</a> 链接动态库</h3> <p>除了在项目中引入静态库，很多时候也会使用一些标准的或者第三方提供的一些动态库，关于<strong>动态库的制作、使用以及在内存中的加载方式</strong>和静态库都是不同的。</p> <p>在 cmake 中链接动态库需要用到 <a href="https://cmake.org/cmake/help/latest/command/target_link_libraries.html" target="_blank" rel="noopener noreferrer">target_link_libraries<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> 命令</p> <div class="language-txt extra-class"><pre class="language-txt"><code>target_link_libraries(&lt;target&gt;
+                      &lt;PRIVATE|PUBLIC|INTERFACE&gt; &lt;item&gt;...
+                     [&lt;PRIVATE|PUBLIC|INTERFACE&gt; &lt;item&gt;...]...)
+</code></pre></div><ul><li><code>target</code> 表示要链接到哪里，即目标。可以是可执行文件或者一个库</li> <li>后续的参数格式为 <code>修饰符 动态库</code>，不同的修饰符表示不同的权限
+<ul><li>如果链接的动态库之间没有依赖关系，则无需做任何设置，<strong>一般无需指定</strong>，使用<strong>默认的 PUBLIC</strong> 即可</li> <li>动态库的链接具有<code>传递性</code>，例如动态库 A 链接了动态库 B 和动态库 C（可表示为 <code>target_link_libraries(a, b, c)</code>），动态库 D 链接了动态库 A，那么此时动态库 D 相当于也链接了动态库 B、C，并可以使用 B 和 C 中定义的方法</li> <li>权限 <code>PUBLIC</code>：用 public 修饰的库会被链接到 target 中，并且其中的符号也会被导出提供给第三方使用</li> <li>权限 <code>PRIVATE</code>：用 private 修饰的库仅被链接到 target 中，并且终结掉，第三方无法感知调用了什么库</li> <li>权限 <code>INTERFACE</code>：用 interface 修饰的库不会被连接到前面的 taget 中，只会导出符号</li></ul></li> <li><code>target_link_libraries</code> 即可用来链接静态库，也可用来链接动态库</li></ul> <p>例子：链接之前创建的动态库 <code>mycalc</code></p> <div class="language-python extra-class"><pre class="language-python"><code>cmake_minimum_required<span class="token punctuation">(</span>VERSION <span class="token number">3.15</span><span class="token punctuation">)</span>
+project<span class="token punctuation">(</span>helloworld<span class="token punctuation">)</span>
+<span class="token builtin">set</span><span class="token punctuation">(</span>CMAKE_CXX_STANDARD <span class="token number">11</span><span class="token punctuation">)</span>
+
+<span class="token builtin">file</span><span class="token punctuation">(</span>GLOB SRC_LIST $<span class="token punctuation">{</span>PROJECT_SOURCE_DIR<span class="token punctuation">}</span><span class="token operator">/</span>src<span class="token operator">/</span><span class="token operator">*</span><span class="token punctuation">.</span>cpp<span class="token punctuation">)</span>
+include_directories<span class="token punctuation">(</span>$<span class="token punctuation">{</span>PROJECT_SOURCE_DIR<span class="token punctuation">}</span><span class="token operator">/</span>include<span class="token punctuation">)</span>
+
+<span class="token comment"># 链接动态库所在目录（需要放在add_executable命令前）</span>
+link_directories<span class="token punctuation">(</span>$<span class="token punctuation">{</span>PROJECT_SOURCE_DIR<span class="token punctuation">}</span><span class="token operator">/</span>lib<span class="token punctuation">)</span>
+
+add_executable<span class="token punctuation">(</span>app $<span class="token punctuation">{</span>SRC_LIST<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 链接动态库到可执行文件</span>
+target_link_libraries<span class="token punctuation">(</span>app mycalc<span class="token punctuation">)</span>
+</code></pre></div><p>注意：<code>target_link_libraries()</code> 语句必须放在<strong>最后一行</strong></p> <h3 id="补充-库的加载工作"><a href="#补充-库的加载工作" class="header-anchor">#</a> 补充：库的加载工作</h3> <blockquote><p>引用 <a href="https://subingwen.cn/linux/library/#1-1-%E7%94%9F%E6%88%90%E9%9D%99%E6%80%81%E9%93%BE%E6%8E%A5%E5%BA%93" target="_blank" rel="noopener noreferrer">Linux 静态库和动态库 | 爱编程的大丙 (subingwen.cn)<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></blockquote> <p><strong>静态库如何被加载</strong></p> <p>在程序编译的最后一个阶段也就是链接阶段，提供的<strong>静态库会被打包到可执行程序中</strong>。当可执行程序被执行，静态库中的代码也会一并被加载到内存中，因此不会出现静态库找不到无法被加载的问题。</p> <p>优点：</p> <ul><li>静态库被打包到应用程序中加载速度快</li> <li>发布程序无需提供静态库，移植方便</li></ul> <p>缺点：</p> <ul><li>相同的库文件数据可能在内存中被加载多份, 消耗系统资源，浪费内存</li> <li>库文件更新需要重新编译项目文件, 生成新的可执行程序, 浪费时间。</li></ul> <hr> <p><strong>动态库如何被加载</strong></p> <p>在程序编译的最后一个阶段也就是<strong>链接阶段</strong>：</p> <ul><li>在 gcc 命令中虽然指定了库路径（使用参数 -L），但是这个路径并没有记录到可执行程序中，<strong>只是检查</strong>了这个路径下的库文件是否存在。</li> <li>同样对应的动态库文件也<strong>没有被打包</strong>到可执行程序中，<strong>只是在可执行程序中记录了库的名字</strong>。</li></ul> <p>可执行程序被执行起来之后:</p> <ul><li>程序执行的时候会先检测需要的动态库是否可以被加载，加载不到就会提示上边的错误信息</li> <li>当动态库中的函数在程序中<strong>被调用了,</strong> 这个时候动态库<strong>才加载到内存</strong>，如果不被调用就不加载</li> <li>动态库的检测和内存加载操作都是由动态连接器来完成的</li></ul> <p>优点：</p> <ul><li>可实现不同进程间的资源<strong>共享</strong></li> <li>动态库升级简单, 只需要替换库文件, 无需重新编译应用程序</li> <li>程序猿可以控制何时加载动态库, 不调用库函数动态库不会被加载</li></ul> <p>缺点：</p> <ul><li><p>加载速度比静态库慢, 以现在计算机的性能可以忽略</p></li> <li><p>发布程序需要提供依赖的动态库</p></li></ul> <h2 id="日志"><a href="#日志" class="header-anchor">#</a> 日志</h2> <p>可以利用 <a href="https://cmake.org/cmake/help/latest/command/message.html" target="_blank" rel="noopener noreferrer">message<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> 命令记录日志</p> <div class="language-python extra-class"><pre class="language-python"><code>message<span class="token punctuation">(</span><span class="token punctuation">[</span>STATUS<span class="token operator">|</span>WARNING<span class="token operator">|</span>AUTHOR_WARNING<span class="token operator">|</span>SEND_ERROR<span class="token operator">|</span>FATAL_ERROR<span class="token punctuation">]</span> <span class="token string">&quot;message here...&quot;</span><span class="token punctuation">)</span>
+</code></pre></div><ul><li>不添加模式：表示重要信息</li> <li><code>STATUS</code>：表示非重要信息</li> <li><code>WARNING</code>：警告，会继续执行</li> <li><code>AUTHOR_WARNING</code>：警告（dev），会继续执行</li> <li><code>SEND_ERROR</code>：错误，继续执行，跳过生成</li> <li><code>FATAL_ERROR</code>：致命错误，终止运行和生成</li></ul> <p>例子</p> <div class="language-python extra-class"><pre class="language-python"><code><span class="token builtin">file</span><span class="token punctuation">(</span>GLOB SRC_LIST $<span class="token punctuation">{</span>PROJECT_SOURCE_DIR<span class="token punctuation">}</span><span class="token operator">/</span>src<span class="token operator">/</span><span class="token operator">*</span><span class="token punctuation">.</span>cpp<span class="token punctuation">)</span>
+
+<span class="token comment"># -- source files:/home/.../04proj_use_dynamic_lib/src/main.cpp</span>
+message<span class="token punctuation">(</span>STATUS <span class="token string">&quot;source files:&quot;</span> $<span class="token punctuation">{</span>SRC_LIST<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><h2 id="变量和列表"><a href="#变量和列表" class="header-anchor">#</a> 变量和列表</h2> <h3 id="字符串拼接"><a href="#字符串拼接" class="header-anchor">#</a> 字符串拼接</h3> <p>使用 set 命令进行字符串拼接</p> <div class="language-python extra-class"><pre class="language-python"><code><span class="token builtin">set</span><span class="token punctuation">(</span>STR1 <span class="token string">&quot;NeuralNetwork&quot;</span><span class="token punctuation">)</span>
+<span class="token builtin">set</span><span class="token punctuation">(</span>STR2 <span class="token string">&quot;Hareware&quot;</span><span class="token punctuation">)</span>
+<span class="token builtin">set</span><span class="token punctuation">(</span>STR3 <span class="token string">&quot;I love &quot;</span> $<span class="token punctuation">{</span>STR1<span class="token punctuation">}</span> <span class="token string">&quot; and &quot;</span> $<span class="token punctuation">{</span>STR2<span class="token punctuation">}</span><span class="token punctuation">)</span>
+message<span class="token punctuation">(</span>STATUS $<span class="token punctuation">{</span>STR3<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token comment"># -- I love NeuralNetwork and Hareware</span>
+
+<span class="token builtin">set</span><span class="token punctuation">(</span>STR4 <span class="token string">&quot;I love ${STR1} and ${STR2}&quot;</span><span class="token punctuation">)</span>
+message<span class="token punctuation">(</span>STATUS $<span class="token punctuation">{</span>STR4<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token comment"># -- I love NeuralNetwork and Hareware</span>
+</code></pre></div><h3 id="list-操作"><a href="#list-操作" class="header-anchor">#</a> List 操作</h3> <p><a href="https://cmake.org/cmake/help/latest/command/list.html" target="_blank" rel="noopener noreferrer">list<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p>基本操作：</p> <div class="language- extra-class"><pre class="language-text"><code>list([APPEND|LENGTH|GET|REMOVE_ITEM] 操作的变量 参数 [结果变量])
+</code></pre></div><div class="language-python extra-class"><pre class="language-python"><code><span class="token comment"># 创建 list</span>
+<span class="token builtin">set</span><span class="token punctuation">(</span>A_LIST apple banana grape<span class="token punctuation">)</span>
+message<span class="token punctuation">(</span>$<span class="token punctuation">{</span>A_LIST<span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token comment"># applebananagrape</span>
+
+<span class="token comment"># 向 list 中追加元素</span>
+<span class="token builtin">list</span><span class="token punctuation">(</span>APPEND A_LIST <span class="token string">&quot;cake&quot;</span><span class="token punctuation">)</span>
+message<span class="token punctuation">(</span>$<span class="token punctuation">{</span>A_LIST<span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token comment"># applebananagrapecake</span>
+
+<span class="token comment"># 获取长度</span>
+<span class="token builtin">list</span><span class="token punctuation">(</span>LENGTH A_LIST LIST_LEN<span class="token punctuation">)</span>
+message<span class="token punctuation">(</span><span class="token string">&quot;len: ${LIST_LEN}&quot;</span><span class="token punctuation">)</span>  <span class="token comment"># 4</span>
+
+<span class="token comment"># 获取 A_LIST[0]</span>
+<span class="token builtin">list</span><span class="token punctuation">(</span>GET A_LIST <span class="token number">0</span> LIST_STR<span class="token punctuation">)</span>
+message<span class="token punctuation">(</span><span class="token string">&quot;A_LIST[0]: ${LIST_STR}&quot;</span><span class="token punctuation">)</span> <span class="token comment"># apple</span>
+<span class="token comment"># A_LIST[3]</span>
+<span class="token builtin">list</span><span class="token punctuation">(</span>GET A_LIST <span class="token number">3</span> LIST_STR<span class="token punctuation">)</span>
+message<span class="token punctuation">(</span><span class="token string">&quot;A_LIST[3]: ${LIST_STR}&quot;</span><span class="token punctuation">)</span> <span class="token comment"># cake</span>
+
+<span class="token comment"># 移除元素</span>
+<span class="token builtin">list</span><span class="token punctuation">(</span>REMOVE_ITEM A_LIST grape<span class="token punctuation">)</span>
+<span class="token comment"># A_LIST[2]</span>
+<span class="token builtin">list</span><span class="token punctuation">(</span>GET A_LIST <span class="token number">2</span> LIST_STR<span class="token punctuation">)</span>
+message<span class="token punctuation">(</span><span class="token string">&quot;A_LIST[2]: ${LIST_STR}&quot;</span><span class="token punctuation">)</span> <span class="token comment"># cake</span>
+</code></pre></div><p>其他操作：在指定位置插入若干元素、将元素插入 i=0 的位置、删除第一个元素、移除最后一个元素、移除指定索引的元素、移除指定元素、移除重复元素、翻转元素、元素排序等等</p> <h2 id="宏定义"><a href="#宏定义" class="header-anchor">#</a> 宏定义</h2> <p>代码所在项目：<code>05_micro_definition</code></p> <p>在代码中，我们会根据宏定义判断是否执行某一段逻辑，比如</p> <div class="language-c extra-class"><pre class="language-c"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&lt;stdio.h&gt;</span></span>
+<span class="token keyword">void</span> <span class="token function">process</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;process...\n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token comment">//有宏定义时才会执行代码</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">ifdef</span> <span class="token expression">DEBUG_MODE</span></span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;debugging...\n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span></span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span><span class="token number">10</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">process</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>为了让测试更灵活，我们可以不在代码中定义宏，而是在 gcc/g++ 命令中指定，比如</p> <div class="language-sh extra-class"><pre class="language-sh"><code>$ gcc test.c <span class="token parameter variable">-DDEBUG_MODE</span> <span class="token parameter variable">-o</span> app
+</code></pre></div><p>在 CMake 中我们不直接配置 gcc/g++，而是在 <code>CMakeLists.txt</code> 中进行宏定义</p> <div class="language-py extra-class"><pre class="language-py"><code>add_definitions<span class="token punctuation">(</span><span class="token operator">-</span>DDEBUG_MODE<span class="token punctuation">)</span>
+</code></pre></div><p>测试：</p> <div class="language-py extra-class"><pre class="language-py"><code>cmake_minimum_required<span class="token punctuation">(</span>VERSION <span class="token number">3.15</span><span class="token punctuation">)</span>
+
+project<span class="token punctuation">(</span>helloworld<span class="token punctuation">)</span>
+
+<span class="token comment"># 进行宏定义</span>
+add_definitions<span class="token punctuation">(</span><span class="token operator">-</span>DDEBUG_MODE<span class="token punctuation">)</span>
+
+add_executable<span class="token punctuation">(</span>app main<span class="token punctuation">.</span>cpp<span class="token punctuation">)</span>
+</code></pre></div><h2 id="cmake-嵌套"><a href="#cmake-嵌套" class="header-anchor">#</a> CMake 嵌套</h2> <p>当项目功能比较复杂时，需要进行“模块化”拆分简化，每个模块中包含一个 <code>CMakeLists.txt</code></p> <p>比如我们有这样一个“复杂”的项目</p> <div class="language-txt extra-class"><pre class="language-txt"><code>.
+|-- calc                   &lt;--- 计算工具模块
+|   |-- add.cpp
+|   |-- CMakeLists.txt
+|   |-- div.cpp
+|   |-- mul.cpp
+|   `-- sub.cpp
+|-- CMakeLists.txt
+|-- include                &lt;---- 声明模块
+|   |-- calc.h
+|   `-- sort.h
+|-- sort                   &lt;---- 排序模块
+|   |-- CMakeLists.txt
+|   |-- insert_sort.cpp
+|   `-- select_sort.cpp
+|-- test_calc              &lt;---- 测试模块，测试计算工具
+|   |-- CMakeLists.txt
+|   `-- test_calc.cpp
+`-- test_sort              &lt;---- 测试模块，测试排序工具
+    |-- CMakeLists.txt
+    `-- test_sort.cpp
+</code></pre></div><p><strong>变量共享</strong>：子节点使用父节点中定义的变量</p> <p>指定父子关系：使用 <code>add_subdirectory</code> 命令</p> <h3 id="编写根-cmakelists-txt"><a href="#编写根-cmakelists-txt" class="header-anchor">#</a> 编写根 CMakeLists.txt</h3> <div class="language-py extra-class"><pre class="language-py"><code>cmake_minimum_required<span class="token punctuation">(</span>VERSION <span class="token number">3.15</span><span class="token punctuation">)</span>
+project<span class="token punctuation">(</span>test<span class="token punctuation">)</span>
+
+<span class="token comment"># 定义变量</span>
+<span class="token comment"># 1.定义静态库生成路径</span>
+SET<span class="token punctuation">(</span>SLIB_PATH $<span class="token punctuation">{</span>PROJECT_SOURCE_DIR<span class="token punctuation">}</span><span class="token operator">/</span>lib<span class="token punctuation">)</span>
+<span class="token comment"># 2.定义可执行程序的存储路径</span>
+SET<span class="token punctuation">(</span>EXE_PATH $<span class="token punctuation">{</span>PROJECT_SOURCE_DIR<span class="token punctuation">}</span><span class="token operator">/</span><span class="token builtin">bin</span><span class="token punctuation">)</span>
+<span class="token comment"># 3.定义头文件路径</span>
+SET<span class="token punctuation">(</span>HEAD_PATH $<span class="token punctuation">{</span>PROJECT_SOURCE_DIR<span class="token punctuation">}</span><span class="token operator">/</span>include<span class="token punctuation">)</span>
+<span class="token comment"># 4.定义库文件名</span>
+SET<span class="token punctuation">(</span>LIB_CALC calc<span class="token punctuation">)</span>
+SET<span class="token punctuation">(</span>LIB_SORT sort<span class="token punctuation">)</span>
+<span class="token comment"># 5.定义可执行文件名</span>
+SET<span class="token punctuation">(</span>APP_TEST_CALC app_test_calc<span class="token punctuation">)</span>
+SET<span class="token punctuation">(</span>APP_TEST_SORT app_test_sort<span class="token punctuation">)</span>
+
+<span class="token comment"># 添加子目录</span>
+add_subdirectory<span class="token punctuation">(</span>calc<span class="token punctuation">)</span>
+add_subdirectory<span class="token punctuation">(</span>sort<span class="token punctuation">)</span>
+add_subdirectory<span class="token punctuation">(</span>test_calc<span class="token punctuation">)</span>
+add_subdirectory<span class="token punctuation">(</span>test_sort<span class="token punctuation">)</span>
+</code></pre></div><p>在此定义的变量可以在子模块中使用</p> <h3 id="calc-和-sort-两个模块的-cmakelists-txt"><a href="#calc-和-sort-两个模块的-cmakelists-txt" class="header-anchor">#</a> calc 和 sort 两个模块的 CMakeLists.txt</h3> <p><code>calc/CMakeLists.txt</code></p> <div class="language-py extra-class"><pre class="language-py"><code>cmake_minimum_required<span class="token punctuation">(</span>VERSION <span class="token number">3.15</span><span class="token punctuation">)</span>
+project<span class="token punctuation">(</span>calc<span class="token punctuation">)</span>
+
+<span class="token comment"># 搜索所有源文件</span>
+<span class="token builtin">file</span><span class="token punctuation">(</span>GLOB SRC_LIST <span class="token punctuation">.</span><span class="token operator">/</span><span class="token operator">*</span><span class="token punctuation">.</span>cpp<span class="token punctuation">)</span>
+<span class="token comment"># 指定头文件</span>
+include_directories<span class="token punctuation">(</span>$<span class="token punctuation">{</span>HEAD_PATH<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token comment"># 指定库输出目录</span>
+<span class="token builtin">set</span><span class="token punctuation">(</span>LIBRARY_OUTPUT_PATH $<span class="token punctuation">{</span>SLIB_PATH<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token comment"># 编译静态库。指定库名</span>
+add_library<span class="token punctuation">(</span>$<span class="token punctuation">{</span>LIB_CALC<span class="token punctuation">}</span> STATIC $<span class="token punctuation">{</span>SRC_LIST<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><p><code>sort/CMakeLists.txt</code></p> <div class="language-py extra-class"><pre class="language-py"><code>cmake_minimum_required<span class="token punctuation">(</span>VERSION <span class="token number">3.15</span><span class="token punctuation">)</span>
+project<span class="token punctuation">(</span>sort<span class="token punctuation">)</span>
+
+<span class="token comment"># 搜索所有源文件</span>
+<span class="token builtin">file</span><span class="token punctuation">(</span>GLOB SRC_LIST <span class="token punctuation">.</span><span class="token operator">/</span><span class="token operator">*</span><span class="token punctuation">.</span>cpp<span class="token punctuation">)</span>
+<span class="token comment"># 指定头文件</span>
+include_directories<span class="token punctuation">(</span>$<span class="token punctuation">{</span>HEAD_PATH<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token comment"># 指定库输出目录</span>
+<span class="token builtin">set</span><span class="token punctuation">(</span>LIBRARY_OUTPUT_PATH $<span class="token punctuation">{</span>SLIB_PATH<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token comment"># 编译静态库。指定库名</span>
+add_library<span class="token punctuation">(</span>$<span class="token punctuation">{</span>LIB_SORT<span class="token punctuation">}</span> STATIC $<span class="token punctuation">{</span>SRC_LIST<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><h3 id="两个测试目录里的-cmakelists-txt"><a href="#两个测试目录里的-cmakelists-txt" class="header-anchor">#</a> 两个测试目录里的 CMakeLists.txt</h3> <p><code>test_calc/CMakeLists.txt</code></p> <div class="language-py extra-class"><pre class="language-py"><code>cmake_minimum_required<span class="token punctuation">(</span>VERSION <span class="token number">3.15</span><span class="token punctuation">)</span>
+project<span class="token punctuation">(</span>test_calc<span class="token punctuation">)</span>
+
+<span class="token comment"># 搜索源文件</span>
+<span class="token builtin">file</span><span class="token punctuation">(</span>GLOB SRC_LIST <span class="token punctuation">.</span><span class="token operator">/</span><span class="token operator">*</span><span class="token punctuation">.</span>cpp<span class="token punctuation">)</span>
+<span class="token comment"># 包含声明文件目录</span>
+include_directories<span class="token punctuation">(</span>$<span class="token punctuation">{</span>HEAD_PATH<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 链接静态库</span>
+link_libraries<span class="token punctuation">(</span>$<span class="token punctuation">{</span>LIB_CALC<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token comment"># 指定库目录</span>
+link_directories<span class="token punctuation">(</span>$<span class="token punctuation">{</span>SLIB_PATH<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 指定生成程序存储位置</span>
+SET<span class="token punctuation">(</span>EXECUTABLE_OUTPUT_PATH $<span class="token punctuation">{</span>EXE_PATH<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token comment"># 生成程序</span>
+add_executable<span class="token punctuation">(</span>$<span class="token punctuation">{</span>APP_TEST_CALC<span class="token punctuation">}</span> $<span class="token punctuation">{</span>SRC_LIST<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><p><code>test_sort/CMakeLists.txt</code></p> <div class="language-py extra-class"><pre class="language-py"><code>cmake_minimum_required<span class="token punctuation">(</span>VERSION <span class="token number">3.15</span><span class="token punctuation">)</span>
+project<span class="token punctuation">(</span>test_sort<span class="token punctuation">)</span>
+
+<span class="token comment"># 搜索源文件</span>
+<span class="token builtin">file</span><span class="token punctuation">(</span>GLOB SRC_LIST <span class="token punctuation">.</span><span class="token operator">/</span><span class="token operator">*</span><span class="token punctuation">.</span>cpp<span class="token punctuation">)</span>
+<span class="token comment"># 包含声明文件目录</span>
+include_directories<span class="token punctuation">(</span>$<span class="token punctuation">{</span>HEAD_PATH<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 链接静态库</span>
+link_libraries<span class="token punctuation">(</span>$<span class="token punctuation">{</span>LIB_SORT<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token comment"># 指定库目录</span>
+link_directories<span class="token punctuation">(</span>$<span class="token punctuation">{</span>SLIB_PATH<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 指定生成程序存储位置</span>
+SET<span class="token punctuation">(</span>EXECUTABLE_OUTPUT_PATH $<span class="token punctuation">{</span>EXE_PATH<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token comment"># 生成程序</span>
+add_executable<span class="token punctuation">(</span>$<span class="token punctuation">{</span>APP_TEST_SORT<span class="token punctuation">}</span> $<span class="token punctuation">{</span>SRC_LIST<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><h3 id="执行构建"><a href="#执行构建" class="header-anchor">#</a> 执行构建</h3> <p>在根目录中创建 build 目录，然后在其中执行 <code>cmake ..</code>，然后执行 <code>make</code> 命令</p> <div class="language- extra-class"><pre class="language-text"><code>[engure@ali build]$ cmake .. &amp;&amp; make
+-- The C compiler identification is GNU 8.5.0
+-- The CXX compiler identification is GNU 8.5.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/engure/cmake_dabing/cmake-tutorials-dabing/06_modulization/build
+[  8%] Building CXX object calc/CMakeFiles/calc.dir/add.cpp.o
+[ 16%] Building CXX object calc/CMakeFiles/calc.dir/div.cpp.o
+[ 25%] Building CXX object calc/CMakeFiles/calc.dir/mul.cpp.o
+[ 33%] Building CXX object calc/CMakeFiles/calc.dir/sub.cpp.o
+[ 41%] Linking CXX static library ../../lib/libcalc.a
+[ 41%] Built target calc
+[ 50%] Building CXX object sort/CMakeFiles/sort.dir/insert_sort.cpp.o
+[ 58%] Building CXX object sort/CMakeFiles/sort.dir/select_sort.cpp.o
+[ 66%] Linking CXX static library ../../lib/libsort.a
+[ 66%] Built target sort
+[ 75%] Building CXX object test_calc/CMakeFiles/app_test_calc.dir/test_calc.cpp.o
+[ 83%] Linking CXX executable ../../bin/app_test_calc
+[ 83%] Built target app_test_calc
+[ 91%] Building CXX object test_sort/CMakeFiles/app_test_sort.dir/test_sort.cpp.o
+[100%] Linking CXX executable ../../bin/app_test_sort
+[100%] Built target app_test_sort
+</code></pre></div><h3 id="在-sort-库中链接-calc-库"><a href="#在-sort-库中链接-calc-库" class="header-anchor">#</a> 在 sort 库中链接 calc 库</h3> <p>在 sort 静态库中链接 calc 静态库，只需要保留 <code>test_sort</code> 一个测试模块即可</p> <p>项目：<code>07_modulization_lib_link</code></p> <p>1、指定 sort 库链接 calc 库，<code>sort/CMakeLists.txt</code></p> <div class="language-py extra-class"><pre class="language-py"><code>cmake_minimum_required<span class="token punctuation">(</span>VERSION <span class="token number">3.15</span><span class="token punctuation">)</span>
+project<span class="token punctuation">(</span>sort<span class="token punctuation">)</span>
+
+<span class="token builtin">file</span><span class="token punctuation">(</span>GLOB SRC_LIST <span class="token punctuation">.</span><span class="token operator">/</span><span class="token operator">*</span><span class="token punctuation">.</span>cpp<span class="token punctuation">)</span>
+include_directories<span class="token punctuation">(</span>$<span class="token punctuation">{</span>HEAD_PATH<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token builtin">set</span><span class="token punctuation">(</span>LIBRARY_OUTPUT_PATH $<span class="token punctuation">{</span>SLIB_PATH<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 链接 calc 库</span>
+link_directories<span class="token punctuation">(</span>$<span class="token punctuation">{</span>SLIB_PATH<span class="token punctuation">}</span><span class="token punctuation">)</span>
+link_libraries<span class="token punctuation">(</span>$<span class="token punctuation">{</span>LIB_CALC<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+add_library<span class="token punctuation">(</span>$<span class="token punctuation">{</span>LIB_SORT<span class="token punctuation">}</span> STATIC $<span class="token punctuation">{</span>SRC_LIST<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><p>2、在 sort 库中使用 calc 库中的的函数，<code>sort/insert_sort.cpp</code></p> <div class="language-cpp extra-class"><pre class="language-cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&lt;stdio.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&quot;sort.h&quot;</span></span>
+<span class="token comment">//引入声明</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&quot;calc.h&quot;</span></span>
+
+<span class="token keyword">void</span> <span class="token function">insert_sort</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span>arr<span class="token punctuation">,</span> <span class="token keyword">int</span> size<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 调用 add 方法</span>
+  <span class="token keyword">int</span> c <span class="token operator">=</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;---\nc=%d\n---\n&quot;</span><span class="token punctuation">,</span> c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">int</span> i<span class="token punctuation">,</span> j<span class="token punctuation">,</span> key<span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> size<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      key <span class="token operator">=</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+      j <span class="token operator">=</span> i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+      <span class="token keyword">while</span> <span class="token punctuation">(</span>j <span class="token operator">&gt;=</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&gt;</span> key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          arr<span class="token punctuation">[</span>j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+          j <span class="token operator">=</span> j <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      arr<span class="token punctuation">[</span>j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> key<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>3、一点说明 <code>test_sort/CMakeLists.txt</code></p> <div class="language-py extra-class"><pre class="language-py"><code>cmake_minimum_required<span class="token punctuation">(</span>VERSION <span class="token number">3.15</span><span class="token punctuation">)</span>
+project<span class="token punctuation">(</span>test_sort<span class="token punctuation">)</span>
+
+<span class="token builtin">file</span><span class="token punctuation">(</span>GLOB SRC_LIST <span class="token punctuation">.</span><span class="token operator">/</span><span class="token operator">*</span><span class="token punctuation">.</span>cpp<span class="token punctuation">)</span>
+include_directories<span class="token punctuation">(</span>$<span class="token punctuation">{</span>HEAD_PATH<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 链接 sort 库以使用其中的排序函数</span>
+<span class="token comment">#   因为 sort 库链接了 calc 库（可理解为 calc 打包到了 sort 库中）</span>
+<span class="token comment">#   所以相当于该测试模块也链接了 calc 库，可直接使用 calc 库</span>
+link_libraries<span class="token punctuation">(</span>$<span class="token punctuation">{</span>LIB_SORT<span class="token punctuation">}</span><span class="token punctuation">)</span>
+link_directories<span class="token punctuation">(</span>$<span class="token punctuation">{</span>SLIB_PATH<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+SET<span class="token punctuation">(</span>EXECUTABLE_OUTPUT_PATH $<span class="token punctuation">{</span>EXE_PATH<span class="token punctuation">}</span><span class="token punctuation">)</span>
+add_executable<span class="token punctuation">(</span>$<span class="token punctuation">{</span>APP_TEST_SORT<span class="token punctuation">}</span> $<span class="token punctuation">{</span>SRC_LIST<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><p>4、在 <code>test_sort</code> 测试项目中使用 calc 库，<code>test_sort/test_sort.cpp</code></p> <div class="language-cpp extra-class"><pre class="language-cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&lt;stdio.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&quot;sort.h&quot;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&quot;calc.h&quot;</span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">int</span> arr1<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token keyword">int</span> arr2<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">int</span> size <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+  <span class="token function">insert_sort</span><span class="token punctuation">(</span>arr1<span class="token punctuation">,</span> size<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">select_sort</span><span class="token punctuation">(</span>arr2<span class="token punctuation">,</span>  size<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> size<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;%d &quot;</span><span class="token punctuation">,</span> arr1<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;\n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> size<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;%d &quot;</span><span class="token punctuation">,</span> arr2<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;\n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// 使用 calc 库中的函数</span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;10 + 20 = %d\n&quot;</span><span class="token punctuation">,</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>5、在 build 目录中构建，测试</p> <h3 id="在静态库中链接动态库"><a href="#在静态库中链接动态库" class="header-anchor">#</a> 在静态库中链接动态库</h3> <p>拷贝上一节最终的项目代码，命名为 <code>08_modulization_lib_link_2</code></p> <p>1、指定 calc 项目最终生成动态库 <code>calc/CMakeLists.txt</code></p> <div class="language-py extra-class"><pre class="language-py"><code>cmake_minimum_required<span class="token punctuation">(</span>VERSION <span class="token number">3.15</span><span class="token punctuation">)</span>
+project<span class="token punctuation">(</span>calc<span class="token punctuation">)</span>
+
+<span class="token builtin">file</span><span class="token punctuation">(</span>GLOB SRC_LIST <span class="token punctuation">.</span><span class="token operator">/</span><span class="token operator">*</span><span class="token punctuation">.</span>cpp<span class="token punctuation">)</span>
+include_directories<span class="token punctuation">(</span>$<span class="token punctuation">{</span>HEAD_PATH<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token builtin">set</span><span class="token punctuation">(</span>LIBRARY_OUTPUT_PATH $<span class="token punctuation">{</span>SLIB_PATH<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token comment"># 将 STATIC 修改为 SHARED</span>
+add_library<span class="token punctuation">(</span>$<span class="token punctuation">{</span>LIB_CALC<span class="token punctuation">}</span> SHARED $<span class="token punctuation">{</span>SRC_LIST<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><p>2、在 sort 中链接 calc 动态库 <code>sort/CMakeLists.txt</code></p> <div class="language-py extra-class"><pre class="language-py"><code>cmake_minimum_required<span class="token punctuation">(</span>VERSION <span class="token number">3.15</span><span class="token punctuation">)</span>
+project<span class="token punctuation">(</span>sort<span class="token punctuation">)</span>
+
+<span class="token builtin">file</span><span class="token punctuation">(</span>GLOB SRC_LIST <span class="token punctuation">.</span><span class="token operator">/</span><span class="token operator">*</span><span class="token punctuation">.</span>cpp<span class="token punctuation">)</span>
+include_directories<span class="token punctuation">(</span>$<span class="token punctuation">{</span>HEAD_PATH<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token builtin">set</span><span class="token punctuation">(</span>LIBRARY_OUTPUT_PATH $<span class="token punctuation">{</span>SLIB_PATH<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+link_directories<span class="token punctuation">(</span>$<span class="token punctuation">{</span>SLIB_PATH<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 生成静态库 sort</span>
+add_library<span class="token punctuation">(</span>$<span class="token punctuation">{</span>LIB_SORT<span class="token punctuation">}</span> STATIC $<span class="token punctuation">{</span>SRC_LIST<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 链接动态库 calc 到 sort 静态库</span>
+target_link_libraries<span class="token punctuation">(</span>$<span class="token punctuation">{</span>LIB_SORT<span class="token punctuation">}</span> $<span class="token punctuation">{</span>LIB_CALC<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><p>3、构建项目</p> <blockquote><p>此时 calc 库并未被打包到 sort 库中，而是保存了符号</p></blockquote> <h2 id="项目"><a href="#项目" class="header-anchor">#</a> 项目</h2> <p>内容：使用 cmake 重新构建一个 <a href="https://github.com/YY0628/ReactorHttp-cpp" target="_blank" rel="noopener noreferrer">ReactorHttp-Cpp（大丙老师另一个教程）<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> 项目</p> <p>步骤：</p> <ol><li>按照不同功能将文件分组，编写根 cmake 配置文件和子配置文件</li> <li>子模块有 common、http、reactor、tcp、thread，在构建时都作为静态库单独构建</li> <li>…</li></ol> <p>此章很重要，值得多看 <a href="https://www.bilibili.com/video/BV14s4y1g7Zj?p=19" target="_blank" rel="noopener noreferrer">p19<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p>checkpoint: <a href="https://gitee.com/egu0/cmake-tutorials-dabing/tree/56765f240ffb0daf38fe653beccee6915c9960c7/" target="_blank" rel="noopener noreferrer">cmake-tutorials-dabing: cmake 课程大丙老师 - Gitee.com<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/ops/assets/js/app.d9b500de.js" defer></script><script src="/ops/assets/js/2.592a6313.js" defer></script><script src="/ops/assets/js/1.47e12c88.js" defer></script><script src="/ops/assets/js/24.848e5af5.js" defer></script>
+  </body>
+</html>
